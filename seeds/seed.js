@@ -1,6 +1,6 @@
 const userSeed = require('./userData.json');
 const recipeSeed = require('./recipeData.json');
-const commentSeed = require('./commentSeed');
+const favoriteSeed = require('./commentSeed.json');
 
 
 const sequelize = require('../config/connection');
@@ -15,10 +15,10 @@ const seedDbs = async () => {
     await userSeed();
     console.log('\n --@-- USERS ARE GROWING FROM SEED! --@--\n');
 
-    await postSeed();
+    await recipeSeed();
     console.log('\n --@-- POSTS ARE GROWING FROM SEED! --@--\n');
 
-    await commentSeed();
+    await favoriteSeed();
     console.log('\n --@-- COMMENTS ARE GROWING FROM SEED! --@--\n');
 
     process.exit(0);
