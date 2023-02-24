@@ -1,32 +1,14 @@
 [
-    {
-        "username": "AB",
-        "email": "ab@recipe.eat",
-        "password": "password"
-    },
-    {
-        "username": "Fanny",
-        "email": "fanny@recipe.eat",
-        "password": "password"
-    },
-    {
-        "username": "Benji",
-        "email": "benji@recipe.eat",
-        "password": "password"
-    },
-    {
-        "username": "Vanessa",
-        "email": "vanessa@recipe.eat",
-        "password": "password"
-    },
-    {
-        "username": "Gavin",
-        "email": "gavin@recipe.eat",
-        "password": "password"
-    },
-    {
-        "username": "Charlie",
-        "email": "charlie@recipe.eat",
-        "password": "password"
-    }
+  {
+    "username": "Sal",
+    "password": "password12345"
+  },
+  {
+    "username": "Lernantino",
+    "password": "password12345"
+  },
+  {
+    "username": "Amiko",
+    "password": "password12345"
+  }
 ]

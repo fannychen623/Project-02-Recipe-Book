@@ -1,0 +1,113 @@
+header, .project:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+.no-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #1b89bc;
+  text-decoration: none;
+  font-size: 100%;
+}
+
+.no-button:hover {
+  color: #065b83;
+  text-decoration: underline;
+}
+
+.comment-header{
+  background-color: #065b83 !important;
+}
+
+.comments-label{
+ margin-left: 15px; 
+}
+
+.post-login-prompt{
+  margin-left: 15px;
+}
+
+.dashboard-title, .post-head-title{
+  font-weight: bold;
+  margin-left: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.para-text{
+  margin-left: 15px;
+  margin-top: 0px;
+}
+
+/* New CSS */
+.bg-custom-primary {
+  background-color: #e0ecd4;
+}
+
+.custom-primary {
+  color: #e0ecd4;
+}
+.bg-brown {
+  background-color: #231010;
+}
+.btn-dark {
+  background-color: #231010;
+}
+ul li a {
+  color: #e0ecd4 !important;
+  margin-right: 13px;
+}
+.tech-blog-btn:hover {
+  background-color: #e0ecd4 !important;
+}
+#tech_blog_info {
+  border: 2px solid #000;
+}
+.text-brownish {
+  color: #d5e5c9;
+}
+
+.tech-blog-btn {
+  background: #9c8c94;
+  border-radius: 12px;
+  border: none;
+  padding: 0px 9px 0px 0px;
+  cursor: pointer;
+  outline-offset: 4px;
+}
+.blog_btn_front {
+  display: block;
+  padding: 8px 35px;
+  border-radius: 10px;
+  font-size: 2rem;
+  background: #e0ecd4;
+  color: #000;
+  transform: translateY(-7px);
+}
+
+.tech-blog-btn:active .blog_btn_front {
+  transform: translateY(-2px);
+}
+.dots-btn {
+  border: 2px solid #9fa2a4;
+  height: 18px;
+  border-radius: 5px;
+  background: linear-gradient(#fbfbfb, #d1d1d1);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.dots {
+  width: 28px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 2.1rem;
+  line-height: 0;
+  margin-top: -10px;
+}
+#signup {
+  color: #9c8c94;
+  text-decoration: none;
+  font-size: 1.2rem;
+}

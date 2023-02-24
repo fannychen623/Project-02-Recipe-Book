@@ -1,27 +1,32 @@
-const userSeed = require('./userData.json');
-const recipeSeed = require('./recipeData.json');
-const favoriteSeed = require('./commentSeed.json');
-
-
 const sequelize = require('../config/connection');
-const { setDefaultResultOrder } = require('dns');
+const { User, Post, Comment } = require('../models');
+
+const userData = require('./userData.json');
+const postData = require('./postData.json');
+const commentData = require('./commentData.json');
+
+const seedDatabase = async () => {
+  await sequelize.sync({ force: true });
+
+  const users = await User.bulkCreate(userData, {
+    individualHooks: true,
+    returning: true,
+  });
+
+  for (const post of postData) {
+    await Post.create({
+      ...post,
+      user_id: users[Math.floor(Math.random() * users.length)].id,
+    });
+  }
+
+  const comments = await Comment.bulkCreate(commentData, {
+    individualHooks: true,
+    returning: true,
+  });  
 
 
-
-const seedDbs = async () => {
-    await sequelize.sync({ force: true });
-    console.log('\n --@-- DATABASE IS GROWING FROM SEED! --@--\n');
-
-    await userSeed();
-    console.log('\n --@-- USERS ARE GROWING FROM SEED! --@--\n');
-
-    await recipeSeed();
-    console.log('\n --@-- POSTS ARE GROWING FROM SEED! --@--\n');
-
-    await favoriteSeed();
-    console.log('\n --@-- COMMENTS ARE GROWING FROM SEED! --@--\n');
-
-    process.exit(0);
+  process.exit(0);
 };
 
-seedDbs();
+seedDatabase();

@@ -15,9 +15,9 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
 
 const sess = {
-  secret: 'Super secret secret',
+  secret: 'TPZvwq1JQe',
   cookie: {
-    maxAge: 300000,
+    maxAge: 30000000,
     httpOnly: true,
     secure: false,
     sameSite: 'strict',
@@ -40,6 +40,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
+
+app.get('*', (req, res) =>
+  res.redirect('/')
+);
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
