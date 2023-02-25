@@ -1,0 +1,80 @@
+<div id="my-kitchen">
+    <div class="field mt-5 my-kitchen-header">
+        <p class="title is-2 my-6">{{recipes.user.username}}'s Kitchen</p>
+        <button class="js-modal-trigger button has-text-weight-bold my-auto is-size-5 has-text-white" data-target="modal-new-recipe" id="new-recipe-toggle">Add New Recipe</button>
+    </div>
+    <div class="columns is-multiline">
+        {{#if recipes.length}}
+            {{#each recipes as |recipe|}}
+            <div class="column is-half">
+                <div class="card mb-5">
+                    <div class="columns is-vcentered pl-5 py-3">
+                        <div class="column is-5">
+                            <div class="card-image">
+                                <figure class="image">
+                                    <img src="https://bulma.io/images/placeholders/128x128.png" alt="Placeholder image" style="height: 200px; width: auto;">
+                                </figure>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <a class="title is-3 is-spaced" href="/my-kitchen/{{recipe.id}}">{{recipe.recipe_name}}</a>
+                            <p class="subtitle is-5 mt-3">Popularity: xx<img src="./images/star.png" alt="Placeholder image" style="height: 20px; width: auto; margin-left: 5%;"></p>
+                            <button type="submit" class="button has-text-weight-bold is-ghost mb-1 delete-recipe" id="delete-recipe">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        {{/if}}
+    </div>
+</div>
+
+<div id="modal-new-recipe" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <div class="modal-card-head p-5">
+            <p class="modal-card-title has-text-white has-text-weight-bold">Create a new dish!</p>
+            <button class="delete" aria-label="close"></button>
+        </div>
+        <section class="modal-card-body pb-5">
+            <form class="form new-recipe-form">
+                <div class="field">
+                    <label class="label">Recipe Name</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" type="text" id="recipe-name">
+                        <span class="icon is-small is-left"><i class="fas fa-cutlery"></i></span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Ingredients</label>
+                    <div class="control">
+                        <textarea class="textarea" id="ingredient-list" placeholder="ingredient 1, ingredient 2, ..."></textarea>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Instructions</label>
+                    <div class="control">
+                        <textarea class="textarea" id="instruction-list" placeholder="step 1, step 2, ..."></textarea>
+                    </div>
+                </div>
+                <div class="file has-name mt-5">
+                    <label class="file-label">
+                        <label class="label mr-5 mt-2">Add a picture of your dish! (JPG/PNG)</label>
+                        <input class="file-input" type="file" name="resume">
+                        <span class="file-cta">
+                            <span class="file-icon"><i class="fas fa-upload"></i></span>
+                            <span class="file-label">Upload Image…</span>
+                        </span>
+                        <span class="file-name has-text-white">file-name</span>
+                    </label>
+                </div>
+            </form>
+        </section>
+        <div class="modal-card-foot py-5 new-recipe-form">
+            <button type="submit" class="button has-text-weight-bold" id="new-recipe">Add Recipe</button>
+            <button class="button has-text-weight-bold">Close</button>
+        </div>
+    </div>
+</div>
+
+<script src="./js/new-recipe.js"></script>

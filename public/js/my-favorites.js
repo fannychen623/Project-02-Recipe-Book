@@ -4,18 +4,18 @@ const deletePostHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
-    const response = await fetch(`/api/posts/${id}`, {
+    const response = await fetch(`/api/favorites/${id}`, {
       method: 'DELETE',
     });
 
     if (response.ok) {
-      document.location.replace('/dashboard');
+      document.location.replace('/my-favorites');
     } else {
-      alert('Failed to delete project');
+      alert('Failed to remove favorite.');
     }
   }
 };
 
 document
-  .querySelector('.delete-post')
+  .querySelector('.delete-favorite')
   .addEventListener('click', deletePostHandler);
