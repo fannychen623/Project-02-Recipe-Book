@@ -75,7 +75,7 @@ router.get('/login', (req, res) => {
     res.redirect('/my-kitchen');
     return;
   }
-  res.render('user-login');
+  res.render('login-signup');
 });
 
 module.exports = router;
