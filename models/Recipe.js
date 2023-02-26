@@ -15,6 +15,9 @@ Recipe.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    recipe_image: {
+      type: DataTypes.TEXT('long'),
+    },
     ingredients: {
       type: DataTypes.TEXT('medium'),
       allowNull: false,
