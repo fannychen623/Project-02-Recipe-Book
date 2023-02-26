@@ -11,18 +11,17 @@ Recipe.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    title: {
+    recipe_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    body: {
+    ingredients: {
       type: DataTypes.TEXT('medium'),
       allowNull: false,
     },
-    date_created: {
-      type: DataTypes.DATE,
+    instructions: {
+      type: DataTypes.TEXT('medium'),
       allowNull: false,
-      defaultValue: DataTypes.NOW,
     },
     user_id: {
       type: DataTypes.INTEGER,

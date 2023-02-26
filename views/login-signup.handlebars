@@ -1,0 +1,74 @@
+<div class="columns" id="login-page">
+    <div class="column is-half is-offset-one-quarter">
+        <div class="card my-6">
+            <div class="card-header pl-3">
+                <p class="card-header-title is-size-3 has-text-white">Enter My Kitchen!</p>
+                <img src="./images/cookingicon.png" alt="Chef Hat" style="height: 100px;">
+            </div>
+            <div class="card-content">
+                <div class="content">
+                    <form class="form login-form">
+                        <div class="field">
+                            <label class="label">Email</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input" type="text" id="email-login">
+                                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input" type="password" id="password-login">
+                                <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
+                            </div>
+                        </div>
+                        <div class="field mt-5 login-buttons">
+                            <button class="js-modal-trigger button has-text-weight-bold pl-1" data-target="modal-signup">Open New Kitchen</button>
+                            <button type="submit" class="button has-text-weight-bold has-text-white" id="login">Get Cookin'</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modal-signup" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <div class="modal-card-head p-5">
+            <p class="modal-card-title has-text-white has-text-weight-bold">Open My Own Kitchen!</p>
+            <button class="delete" aria-label="close"></button>
+        </div>
+        <section class="modal-card-body pb-5">
+            <form class="form signup-form">
+                <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" type="text" id="email-signup">
+                        <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" type="text" id="username-signup">
+                        <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Password</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" type="password" id="password-signup">
+                        <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <div class="modal-card-foot py-5 signup-form">
+            <button type="submit" class="button has-text-weight-bold" id="signup">Start Cookin'</button>
+            <button class="button has-text-weight-bold">Close</button>
+        </div>
+    </div>
+</div>
+  
+<script src="./js/login-signup.js"></script>
