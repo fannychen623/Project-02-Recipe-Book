@@ -71,10 +71,6 @@ router.get('/my-kitchen', withAuth, async (req, res) => {
 
 // manage login
 router.get('/login', (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/my-kitchen');
-    return;
-  }
   res.render('login-signup');
 });
 
