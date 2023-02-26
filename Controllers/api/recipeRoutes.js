@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Recipe } = require('../../models');
+const { Recipe, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // create recipe
@@ -21,12 +21,11 @@ router.post('/', withAuth, async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const recipeData = await Recipe.findByPk(req.params.id, {
-      // include: [
-      //   {
-      //     model: User,
-      //     attributes: ['name'],
-      //   },
-      // ],
+      include: [
+        {
+          model: User,
+        },
+      ],
     });
 
     const recipe = recipeData.get({ plain: true });
