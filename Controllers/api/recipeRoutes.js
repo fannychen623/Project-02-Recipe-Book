@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Recipe } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// create post
+// create recipe
 router.post('/', withAuth, async (req, res) => {
   try {
     const newRecipe = await Recipe.create({
@@ -13,6 +13,31 @@ router.post('/', withAuth, async (req, res) => {
     res.status(200).json(newRecipe);
   } catch (err) {
     res.status(400).json(err);
+  }
+});
+
+
+// display recipe
+router.get('/:id', async (req, res) => {
+  try {
+    const recipeData = await Recipe.findByPk(req.params.id, {
+      // include: [
+      //   {
+      //     model: User,
+      //     attributes: ['name'],
+      //   },
+      // ],
+    });
+
+    const recipe = recipeData.get({ plain: true });
+
+    console.log(recipe);
+    res.render('recipe', {
+      ...recipe,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
