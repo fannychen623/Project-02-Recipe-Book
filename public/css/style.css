@@ -11,7 +11,7 @@ html, body {
   width: 100%;
   height: 100%;
   background-color: var(--brown1);
-  cursor: url("../images/spatula.png"), auto;
+  cursor: url("../images/spatula.png") 35 10, auto;
 }
 
 header, footer{
@@ -66,7 +66,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
 
 #open-book {
   color: var(--brown5);
-  cursor: url("../images/nextpage.png"), auto;
+  cursor: url("../images/nextpage.png") 35 10, auto;
   position: absolute;
   bottom: 10%;
   right: -7%;
@@ -97,7 +97,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
 .pagination-previous {
   color: var(--brown5);
   border: none;
-  cursor: url("../images/previouspage.png"), auto;
+  cursor: url("../images/previouspage.png") 35 10, auto;
   position: absolute;
   bottom: 275%;
   left: -175%;
@@ -106,7 +106,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
 .pagination-next {
   color: var(--brown5);
   border: none;
-  cursor: url("../images/nextpage.png"), auto;
+  cursor: url("../images/nextpage.png") 35 10, auto;
   position: absolute;
   bottom: 275%;
   right: -175%;
@@ -141,7 +141,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
 }
 
 #login, #signup, #new-recipe {
-  cursor: url("../images/chefhat.png"), auto;
+  cursor: url("../images/chefhat.png") 35 10, auto;
   border: none;
 }
 
@@ -154,16 +154,17 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
 
 .modal-card-body {
   background-color: var(--brown1);
+  padding:0;
 }
 
-.modal-card-foot {
+.signup-buttons {
   display: flex;
   justify-content: space-between;
   background-color: var(--brown3);
   border: none;
 }
 
-.modal .label, .modal-card-foot button, #my-kitchen .title, #my-kitchen .subtitle, #my-favorites .title, #my-favorites .subtitle {
+.modal .label, .field button, #my-kitchen .title, #my-kitchen .subtitle, #my-favorites .title, #my-favorites .subtitle {
   color: var(--brown5);
 }
 
@@ -182,7 +183,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
 
 #delete-recipe, #delete-favorite {
   color: var(--brown5);
-  cursor: url("../images/trashcan.png"), auto;
+  cursor: url("../images/trashcan.png") 35 10, auto;
   position: absolute;
   bottom: 0;
   right: 0;

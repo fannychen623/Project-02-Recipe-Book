@@ -2,14 +2,14 @@
     <div class="tile is-ancestor" id="recipe-posts">
         {{#if recipes.length}}
             {{#each recipes as |recipe|}}
-            <div class="tile is-parent is-4 recipe-page" id="{{@index}}" style="visibility: hidden; ">
+            <div class="tile is-parent is-4 recipe-page" id="{{@index}}" style="display: none; ">
                 <article class="tile is-child is-info">
                 <a class="title" href="/recipe/{{recipe.id}}">{{recipe.recipe_name}}</a>
                 <figure class="image is-4by3 my-6">
                     <img src="https://bulma.io/images/placeholders/640x480.png">
                 </figure>
                 <p class="subtitle has-text-weight-bold">Recipe by: {{recipe.user.username}}</p>
-                <p class="subtitle has-text-weight-bold">Popularity: {{recipe.favorite.favorites_count}}</p>
+                <p class="subtitle has-text-weight-bold">Popularity: </p>
                 </article>
             </div>
             {{/each}}
@@ -23,9 +23,9 @@
             <li><span class="pagination-ellipsis">&hellip;</span></li>
             <li><a class="pagination-link is-current has-text-weight-semibold" aria-label="Current page" aria-current="page" id="current-page">1</a></li>
             <li><span class="pagination-ellipsis">&hellip;</span></li>
-            <li><a class="pagination-link" aria-label="Goto last page" id="last-page">{{pageCount}}</a></li>
+            <li><a class="pagination-link" aria-label="Goto last page" id="last-page"></a></li>
         </ul>
     </nav>
 </div>
 
-<script src="./js/catalog.js"></script>
+<script src="/js/catalog.js"></script>
