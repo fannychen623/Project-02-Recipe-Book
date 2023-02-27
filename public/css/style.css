@@ -149,7 +149,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   color: var(--brown5);
   background-color: var(--trans);
   border: none;
-  cursor: alias;
+  /* cursor: alias; */
 }
 
 .modal-card-body {
