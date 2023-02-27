@@ -59,8 +59,6 @@ router.get('/my-kitchen', withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
 
-    console.log("\n\ntest: "+user)
-
     res.render('my-kitchen', {
       ...user,
       logged_in: true
