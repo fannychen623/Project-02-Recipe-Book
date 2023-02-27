@@ -3,7 +3,9 @@ const { User, Recipe, Favorite } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', (req, res) => {
-  res.render('homepage');
+  res.render('homepage', {
+    logged_in: req.session.logged_in
+  });
 });
 
 router.get('/catalog', async (req, res) => {
