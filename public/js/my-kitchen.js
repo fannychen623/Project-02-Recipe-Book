@@ -46,8 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
 const newRecipeHandler = async (event) => {
   event.preventDefault();
 
-  console.log("\n\ntest client\n\n")
-
   const recipe_name = document.querySelector('#recipe-name').value.trim();
   const ingredients = document.querySelector('#ingredient-list').value.trim();
   const instructions = document.querySelector('#instruction-list').value.trim();
