@@ -6,7 +6,9 @@
                 <article class="tile is-child is-info">
                 <a class="title" href="/recipe/{{recipe.id}}">{{recipe.recipe_name}}</a>
                 <figure class="image is-4by3 my-6">
-                    <img src="https://bulma.io/images/placeholders/640x480.png">
+                    {{#if recipe_image}}<img src="{{recipe_image}}">
+                    {{else}}<img src="./images/default_image.png">
+                    {{/if}}
                 </figure>
                 <p class="subtitle has-text-weight-bold">Recipe by: {{recipe.user.username}}</p>
                 <p class="subtitle has-text-weight-bold">Popularity:{{favorites_count}} </p>

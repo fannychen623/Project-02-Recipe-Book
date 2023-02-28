@@ -12,14 +12,7 @@ router.get('/catalog', async (req, res) => {
   try {
     // Get all projects and JOIN with user data
     const recipeData = await Recipe.findAll({
-      include: [
-        {
-          model: User
-        },
-        {
-          model: Favorite
-        }
-      ],
+      include: [User, Favorite]
     });
 
     // Serialize data so the template can read it
@@ -30,9 +23,12 @@ router.get('/catalog', async (req, res) => {
       console.log(recipes[i].favorites_count)
     }
 
+    const default_image = recipes[0].recipe_image;
+
     // Pass serialized data and session flag into template
     res.render('catalog', { 
       recipes, 
+      default_image,
       logged_in: req.session.logged_in 
     });
   } catch (err) {
