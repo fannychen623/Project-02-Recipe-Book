@@ -1,8 +1,9 @@
-const router = require('express').Router();
-const { User, Recipe, Favorite, Random } = require('../models');
-const withAuth = require('../utils/auth');
+
 const { Configuration, OpenAIApi } = require("openai");
 
+const router = require('express').Router();
+const { User, Recipe, Favorite } = require('../models');
+const withAuth = require('../utils/auth');
 
 router.get('/', (req, res) => {
   res.render('homepage', { 
@@ -73,6 +74,13 @@ router.get('/my-favorites', withAuth, async (req, res) => {
   }
 });
 
+// manage login
+router.get('/login', (req, res) => {
+  res.render('login-signup');
+});
+
+
+
 // random recipe call to OpenAI API
 router.post('/random', withAuth, async (req, res) => {
   try {
@@ -98,9 +106,7 @@ router.post('/random', withAuth, async (req, res) => {
 
 
 
-// manage login
-router.get('/login', (req, res) => {
-  res.render('login-signup');
-});
-
 module.exports = router;
+
+
+
