@@ -1,48 +1,33 @@
 const router = require('express').Router();
-const { Post, User, Comment } = require('../models');
+const { User, Recipe, Favorite, Random } = require('../models');
 const withAuth = require('../utils/auth');
+const { Configuration, OpenAIApi } = require("openai");
 
-// render homepage
-router.get('/', async (req, res) => {
+
+router.get('/', (req, res) => {
+  res.render('homepage', { 
+    logged_in: req.session.logged_in 
+  });
+});
+
+router.get('/catalog', async (req, res) => {
   try {
-    const postData = await Post.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-        {
-          model: Comment,
-        },
-      ],
+    // Get all projects and JOIN with user data
+    const recipeData = await Recipe.findAll({
+      include: [User, Favorite]
     });
-  
-    const posts = postData.map((post) => post.get({ plain: true }));
 
-    // sort posts
-    posts.sort((a, b) => b.id - a.id);
-
-    // limit chars for preview
-    for (let i = 0; i < posts.length; i++) { 
-      if (posts[i].body.length > 2000){
-        posts[i].body = posts[i].body.substring(0, 2000) + '( ...click title to view more)'
-      }
-    }
-
-    // display paragraphs text
-    for (let i = 0; i < posts.length; i++) { 
-      let postParasArray = posts[i].body.split("\n")
-      for (let j = 0; j < postParasArray.length; j++) {
-        if (postParasArray[j] == ""){
-          postParasArray.splice(j, 1)
-        }
-      posts[i].body = postParasArray
-      }
-    }
+    // Serialize data so the template can read it
+    const recipes = recipeData.map((recipe) => recipe.get({ plain: true }));
     
-    // render page
-    res.render('homepage', { 
-      posts, 
+    for (let i = 0; i < recipes.length; i++) {
+      recipes[i].favorites_count = recipes[i].favorites.length;
+      console.log(recipes[i].favorites_count)
+    }
+
+    // Pass serialized data and session flag into template
+    res.render('catalog', { 
+      recipes, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {
@@ -50,44 +35,17 @@ router.get('/', async (req, res) => {
   }
 });
 
-// render dashboard
-router.get('/dashboard', withAuth, async (req, res) => {
+router.get('/my-kitchen', withAuth, async (req, res) => {
   try {
+    // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [
-        {
-          model: Post,
-          include: [User, Comment]
-        },
-      ],
+      include: [{ model: Recipe }],
     });
 
     const user = userData.get({ plain: true });
 
-    // sort posts
-    user.posts.sort((a, b) => b.id - a.id);
-
-    // limit chars for preview
-    for (let i = 0; i < user.posts.length; i++) { 
-      if (user.posts[i].body.length > 2000){
-        user.posts[i].body = user.posts[i].body.substring(0, 2000) + '( ...click title to view more)'
-      }
-    }
-
-     // display paragraphs text
-    for (let i = 0; i < user.posts.length; i++) { 
-      let postParasArray = user.posts[i].body.split("\n")
-      for (let j = 0; j < postParasArray.length; j++) {
-        if (postParasArray[j] == ""){
-          postParasArray.splice(j, 1)
-        }
-      user.posts[i].body = postParasArray
-      }
-    }
-
-    // render page
-    res.render('dashboard', {
+    res.render('my-kitchen', {
       ...user,
       logged_in: true
     });
@@ -96,135 +54,53 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
-// render create form
-router.get('/create-post', withAuth, async (req, res) => {
-  res.render('post-create', {logged_in: req.session.logged_in});
-});
-
-// render update form
-router.get('/update-post/:id', withAuth, async (req, res) => {
-
-  const postData = await Post.findByPk(req.params.id, {
-    include: [
-      {
-        model: User,
-        attributes: ['username'],
-      },
-    ],
-  });
-
-  const post = postData.get({ plain: true });
-
-  res.render('post-update', {
-    ...post,
-    username: req.session.username,
-    logged_in: req.session.logged_in
-  });
-
-});
-
-// render post
-router.get('/post/:id', async (req, res) => {
+router.get('/my-favorites', withAuth, async (req, res) => {
   try {
-    const postData = await Post.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-        {
-          model: Comment,
-          include: [User]
-        },
-      ],
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Recipe }],
     });
 
-    const post = postData.get({ plain: true });
+    const user = userData.get({ plain: true });
 
-    // display paragraphs text
-    let postParasArray = post.body.split("\n")
-    for (let j = 0; j < postParasArray.length; j++) {
-      if (postParasArray[j] == ""){
-        postParasArray.splice(j, 1)
-      }
-      post.body = postParasArray
-    }
-
-    // check for comments authorship
-    const comments = post.comments
-    for (let k = 0; k < comments.length; k++) {
-      if(comments[k].user.username == req.session.username){
-        comments[k].deletable = "true";
-      }
-    }
-
-    // check for post authorship
-    const isAuthor = (post.user.username == req.session.username)
-
-    // render page
-    res.render('post-display', {
-      ...post,
-      comments,
-      isAuthor,
-      username: req.session.username,
-      logged_in: req.session.logged_in
+    res.render('my-favorites', {
+      ...user,
+      logged_in: true
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// create comment
-router.post('/comment-create', withAuth, async (req, res) => {
+// random recipe call to OpenAI API
+router.post('/random', withAuth, async (req, res) => {
   try {
-    const newComment = await Comment.create({
-      ...req.body,
-      user_id: req.session.user_id,
+    const configuration = new Configuration({
+      apiKey: process.env.OPENAI_API_KEY,
     });
+    const openai = new OpenAIApi(configuration);
     
-    res.status(200).json(newComment);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-// delete comment
-router.delete('/delete-comment/:id', withAuth, async (req, res) => {
-  try {
-    const commentData = await Comment.destroy({
-      where: {
-        id: req.params.id,
-        user_id: req.session.user_id,
-      },
+    const response = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: `Write a recipe based on these ingredients and/or instructions:${Random.text}`,
+      temperature: 0.9,
+      max_tokens: 120,
+      top_p: 1.0,
+      frequency_penalty: 0.5,
+      presence_penalty: 0.5,
     });
-
-    if (!commentData) {
-      res.status(404).json({ message: 'No comment found with this id!' });
-      return;
-    }
-    res.status(200).json(commentData);
+    res.render('random-response')
   } catch (err) {
-    res.status(500).json(err);
+    console.log(err)
   }
 });
+
+
 
 // manage login
 router.get('/login', (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/dashboard');
-    return;
-  }
-  res.render('user-login');
-});
-
-// manage signup
-router.get('/signup', (req, res) => {
-  if (req.session.logged_in) {
-    res.redirect('/dashboard');
-    return;
-  }
-
-  res.render('user-signup');
+  res.render('login-signup');
 });
 
 module.exports = router;
