@@ -72,7 +72,7 @@ router.get('/my-favorites', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-
+});
 
 // manage login
 router.get('/login', (req, res) => {
