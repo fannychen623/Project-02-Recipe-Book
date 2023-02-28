@@ -1,6 +1,3 @@
-
-const { Configuration, OpenAIApi } = require("openai");
-
 const router = require('express').Router();
 const { User, Recipe, Favorite } = require('../models');
 const withAuth = require('../utils/auth');
@@ -17,13 +14,11 @@ router.get('/catalog', async (req, res) => {
     const recipeData = await Recipe.findAll({
       include: [User, Favorite]
     });
-
     // Serialize data so the template can read it
     const recipes = recipeData.map((recipe) => recipe.get({ plain: true }));
-    
+
     for (let i = 0; i < recipes.length; i++) {
       recipes[i].favorites_count = recipes[i].favorites.length;
-      console.log(recipes[i].favorites_count)
     }
 
     // Pass serialized data and session flag into template
@@ -41,10 +36,20 @@ router.get('/my-kitchen', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Recipe }],
+      include: [
+        { 
+          model: Recipe,
+          include: [Favorite] 
+        }
+      ],
     });
 
     const user = userData.get({ plain: true });
+
+    for (let i = 0; i < user.recipes.length; i++) {
+      user.recipes[i].favorites_count = user.recipes[i].favorites.length;
+      console.log(user.recipes[i].favorites_count)
+    }
 
     res.render('my-kitchen', {
       ...user,
@@ -62,23 +67,19 @@ router.get('/my-favorites', withAuth, async (req, res) => {
       attributes: { exclude: ['password'] },
       include: [{ model: Recipe }],
     });
-
     const user = userData.get({ plain: true });
-
     res.render('my-favorites', {
       ...user,
       logged_in: true
-          });
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
 // manage login
 router.get('/login', (req, res) => {
   res.render('login-signup');
 });
-
 
 
 // random recipe call to OpenAI API
