@@ -12,14 +12,16 @@
                         <div class="column is-5">
                             <div class="card-image">
                                 <figure class="image">
-                                    <img src="{{recipe_image}}" alt="Placeholder image" style="height: 200px; width: auto;">
+                                    {{#if recipe_image}}<img src="{{recipe_image}}" alt="Placeholder image" style="height: 200px; width: auto;">
+                                    {{else}} <img src="./images/default_image.png" alt="Placeholder image" style="height: 200px; width: auto;">
+                                    {{/if}}
                                 </figure>
                             </div>
                         </div>
                         <div class="column">
                             <a class="title is-3 is-spaced" href="/my-kitchen/{{recipe.id}}">{{recipe.recipe_name}}</a>
-                            <p class="subtitle is-5 mt-3">Popularity: xx<img src="./images/star.png" alt="Placeholder image" style="height: 20px; width: auto; margin-left: 5%;"></p>
-                            <button type="submit" class="button has-text-weight-bold is-ghost mb-1 delete-recipe" id="delete-recipe">Remove</button>
+                            <p class="subtitle is-5 mt-3">Popularity: {{favorites_count}}<img src="./images/star.png" alt="Placeholder image" style="height: 20px; width: auto; margin-left: 5%;"></p>
+                            <button type="submit" data-id="{{recipe.id}}" class="button has-text-weight-bold is-ghost mb-1 delete-recipe" id="delete-recipe">Remove</button>
                         </div>
                     </div>
                 </div>

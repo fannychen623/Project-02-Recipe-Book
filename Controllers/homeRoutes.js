@@ -20,7 +20,6 @@ router.get('/catalog', async (req, res) => {
     
     for (let i = 0; i < recipes.length; i++) {
       recipes[i].favorites_count = recipes[i].favorites.length;
-      console.log(recipes[i].favorites_count)
     }
 
     // Pass serialized data and session flag into template
@@ -38,10 +37,20 @@ router.get('/my-kitchen', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Recipe }],
+      include: [
+        { 
+          model: Recipe,
+          include: [Favorite] 
+        }
+      ],
     });
 
     const user = userData.get({ plain: true });
+
+    for (let i = 0; i < user.recipes.length; i++) {
+      user.recipes[i].favorites_count = user.recipes[i].favorites.length;
+      console.log(user.recipes[i].favorites_count)
+    }
 
     res.render('my-kitchen', {
       ...user,
