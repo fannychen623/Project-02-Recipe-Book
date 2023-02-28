@@ -1,0 +1,21 @@
+<div class="card my-6">
+    <div class="card-content">
+        <div class="media">
+            <div class="media-left">
+                <figure class="image">
+                    <img src="{{recipe_image}}" alt="Recipe image" style="height: 300px; width: 400px; auto;">
+                </figure>
+            </div>
+            <div class="media-content">
+                <div class="box" id="favorite star"></div>
+                <p class="title is-2 ml-6 pt-6">{{recipe_name}}</p></br>
+                <p class="title is-4 ml-6 pb-6">Recipe By: {{user.username}}</p>
+                <p class="title is-4 ml-6">Ingredients: {{ingredients}}</p>
+            </div>
+        </div>
+
+        <div class="content pb-6">
+            <p class="title is-4 my-6">Instructions: {{instructions}}</p>
+        </div>
+    </div>
+</div>

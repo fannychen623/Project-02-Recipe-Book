@@ -1,0 +1,31 @@
+<div id="my-favorites">
+    <div class="field mt-5 my-favorites-header">
+        <p class="title is-2 my-6">{{username}}'s Favorites</p>
+    </div>
+    <div class="columns is-multiline">
+        {{#if recipes.length}}
+        {{#each recipes as |recipe|}}
+        <div class="column is-half">
+            <div class="card mb-5">
+                <div class="columns is-vcentered pl-5 py-3">
+                    <div class="column is-5">
+                        <div class="card-image">
+                            <figure class="image">
+                                <img src="https://bulma.io/images/placeholders/128x128.png" alt="Placeholder image" style="height: 200px; width: auto;">
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <a class="title is-3 is-spaced" href="/">{{recipe.recipe_name}}</a>
+                        <p class="subtitle is-5 mt-3">Popularity: xx<img src="./images/star.png" alt="Placeholder image" style="height: 20px; width: auto; margin-left: 5%;"></p>
+                        <button type="submit" class="button has-text-weight-bold is-ghost mb-1 delete-favorite" id="delete-favorite">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{/if}}
+    </div>
+</div>
+
+<script src="/js/my-favorites.js"></script>

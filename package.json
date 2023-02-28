@@ -1,12 +1,15 @@
 {
-  "name": "crowd-funding",
+  "name": "recipe_blog",
   "version": "1.0.0",
-  "description": "",
+  "description": "a place where users can share and like recipes",
+  "engines": {
+    "node": "16.19.0"
+  },
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "seed": "node seeds/seed.js"
+    "seed": "node seeds/index.js"
   },
   "keywords": [],
   "author": "",

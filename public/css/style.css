@@ -1,113 +1,209 @@
-header, .project:not(:last-child) {
-  border-bottom: 1px solid #ccc;
+:root {
+  --brown1: #E5D3B3;
+  --brown2: #D2B48C;
+  --brown3: #B99976;
+  --brown4: #987554;
+  --brown5: #664229;
+  --trans:  #98755400;
 }
 
-.no-button {
-  background: none;
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--brown1);
+  cursor: url("../images/spatula.png") 35 10, auto;
+}
+
+header, footer{
+  background-color: var(--brown4);
+  background-image: url("../images/woodlines.png");
+  background-repeat: no-repeat;
+  background-size:  100% 200%;
+}
+
+.navbar {
+  background-color: var(--trans);
+}
+
+.navbar-link.arrow-head:after, .navbar-divider {
+  border-color: var(--brown5);
+}
+
+.navbar-dropdown, .card-content {
+  background-color: var(--brown2);
+}
+
+.navbar-dropdown .navbar-item, .navbar-dropdown button {
+  color: var(--brown5);
+}
+
+.navbar-divider {
+  background-color: var(--brown5);
+}
+
+.navbar-dropdown {
   border: none;
-  padding: 0;
-  cursor: pointer;
-  color: #1b89bc;
-  text-decoration: none;
-  font-size: 100%;
 }
 
-.no-button:hover {
-  color: #065b83;
-  text-decoration: underline;
-}
-
-.comment-header{
-  background-color: #065b83 !important;
-}
-
-.comments-label{
- margin-left: 15px; 
-}
-
-.post-login-prompt{
-  margin-left: 15px;
-}
-
-.dashboard-title, .post-head-title{
-  font-weight: bold;
-  margin-left: 15px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.para-text{
-  margin-left: 15px;
-  margin-top: 0px;
-}
-
-/* New CSS */
-.bg-custom-primary {
-  background-color: #e0ecd4;
-}
-
-.custom-primary {
-  color: #e0ecd4;
-}
-.bg-brown {
-  background-color: #231010;
-}
-.btn-dark {
-  background-color: #231010;
-}
-ul li a {
-  color: #e0ecd4 !important;
-  margin-right: 13px;
-}
-.tech-blog-btn:hover {
-  background-color: #e0ecd4 !important;
-}
-#tech_blog_info {
-  border: 2px solid #000;
-}
-.text-brownish {
-  color: #d5e5c9;
-}
-
-.tech-blog-btn {
-  background: #9c8c94;
-  border-radius: 12px;
+a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
+  background-color: var(--trans);
   border: none;
-  padding: 0px 9px 0px 0px;
-  cursor: pointer;
-  outline-offset: 4px;
-}
-.blog_btn_front {
-  display: block;
-  padding: 8px 35px;
-  border-radius: 10px;
-  font-size: 2rem;
-  background: #e0ecd4;
-  color: #000;
-  transform: translateY(-7px);
 }
 
-.tech-blog-btn:active .blog_btn_front {
-  transform: translateY(-2px);
+.navbar-dropdown a.navbar-item:hover {
+  background-color: var(--brown1);
+  color: var(--brown5);
 }
-.dots-btn {
-  border: 2px solid #9fa2a4;
-  height: 18px;
-  border-radius: 5px;
-  background: linear-gradient(#fbfbfb, #d1d1d1);
+
+#homepage {
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/bookcover.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 70%;
+}
+
+#open-book {
+  color: var(--brown5);
+  cursor: url("../images/nextpage.png") 35 10, auto;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  bottom: 10%;
+  right: -7%;
 }
-.dots {
-  width: 28px;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 2.1rem;
-  line-height: 0;
-  margin-top: -10px;
+
+#recipe-catalog {
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/bookbackground.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 20%;
 }
-#signup {
-  color: #9c8c94;
-  text-decoration: none;
-  font-size: 1.2rem;
+
+#recipe-posts {
+  text-align: center;
+  justify-content: space-evenly;
+  position: relative;
+  padding-top: 10%;
+}
+
+.pagination {
+  position: absolute;
+  bottom: 5%;
+  left: 41%;
+}
+
+.pagination-previous {
+  color: var(--brown5);
+  border: none;
+  cursor: url("../images/previouspage.png") 35 10, auto;
+  position: absolute;
+  bottom: 275%;
+  left: -175%;
+}
+
+.pagination-next {
+  color: var(--brown5);
+  border: none;
+  cursor: url("../images/nextpage.png") 35 10, auto;
+  position: absolute;
+  bottom: 275%;
+  right: -175%;
+}
+
+.pagination-link {
+  color: var(--brown5);
+  border-color: var(--brown5);
+}
+
+.pagination-ellipsis {
+  color: var(--brown5)
+}
+
+.pagination-link.is-current {
+  background-color: var(--brown3);
+  border-color: var(--brown5);
+}
+
+#login-page {
+  margin-bottom: 5%;
+}
+
+.card-header, .login-form button, .modal-card-head, #new-recipe-toggle, .file-name {
+  background-color: var(--brown4);
+  border: none;
+}
+
+.login-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+#login, #signup, #new-recipe {
+  cursor: url("../images/chefhat.png") 35 10, auto;
+  border: none;
+}
+
+.login-buttons .js-modal-trigger {
+  color: var(--brown5);
+  background-color: var(--trans);
+  border: none;
+  /* cursor: alias; */
+}
+
+.modal-card-body {
+  background-color: var(--brown1);
+  padding:0;
+}
+
+.signup-buttons {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--brown3);
+  border: none;
+}
+
+.modal .label, .field button, #my-kitchen .title, #my-kitchen .subtitle, #my-favorites .title, #my-favorites .subtitle {
+  color: var(--brown5);
+}
+
+#my-kitchen, #my-favorites {
+  padding-bottom: 10%;
+}
+
+#my-kitchen .card, #my-favorites .card {
+  background-color: var(--brown2);
+}
+
+.my-kitchen-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+#delete-recipe, #delete-favorite {
+  color: var(--brown5);
+  cursor: url("../images/trashcan.png") 35 10, auto;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.box {
+  height: 50px; 
+  width: 50px;
+  background-color: var(--trans);
+  background-image: url("../images/unfilledstar.png");
+  background-repeat: no-repeat;
+  background-size: 50px;
+  box-shadow: none;
+  position: absolute;
+  margin: 2%;
+  top: 0;
+  right: 0;
+}
+
+.box:hover {
+  background-image: url("../images/filledstar.png");
+  cursor: pointer;
 }
