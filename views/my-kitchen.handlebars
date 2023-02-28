@@ -60,14 +60,16 @@
                 <div class="file has-name mt-5">
                     <label class="file-label">
                         <label class="label mr-5 mt-2">Add a picture of your dish! (JPG/PNG)</label>
-                        <input class="file-input" type="file" name="resume">
-                        <span class="file-cta">
-                            <span class="file-icon"><i class="fas fa-upload"></i></span>
-                            <span class="file-label">Upload Image…</span>
-                        </span>
-                        <span class="file-name has-text-white">file-name</span>
-                    </label>
-                </div>
+                        <form class="box" method="post" action="" enctype="multipart/form-data">
+                    <div class="box__input">
+                         <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
+                         <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
+                         <button class="box__button" type="submit">Upload</button>
+                    </div>
+                    <div class="box__uploading">Uploading…</div>
+                <div class="box__success">Done!</div>
+                <div class="box__error">Error! <span></span>.</div>
+                </form>
                 <div class="field">
                     <button type="submit" class="button has-text-weight-bold" id="new-recipe">Add Recipe</button>
                     <button class="button has-text-weight-bold">Close</button>
