@@ -23,12 +23,9 @@ router.get('/catalog', async (req, res) => {
       console.log(recipes[i].favorites_count)
     }
 
-    const default_image = recipes[0].recipe_image;
-
     // Pass serialized data and session flag into template
     res.render('catalog', { 
       recipes, 
-      default_image,
       logged_in: req.session.logged_in 
     });
   } catch (err) {
