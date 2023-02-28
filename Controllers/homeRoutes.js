@@ -12,14 +12,7 @@ router.get('/catalog', async (req, res) => {
   try {
     // Get all projects and JOIN with user data
     const recipeData = await Recipe.findAll({
-      include: [
-        {
-          model: User
-        },
-        {
-          model: Favorite
-        }
-      ],
+      include: [User, Favorite]
     });
 
     // Serialize data so the template can read it
