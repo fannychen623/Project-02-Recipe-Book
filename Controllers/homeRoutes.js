@@ -54,16 +54,27 @@ router.get('/my-kitchen', withAuth, async (req, res) => {
 
 router.get('/my-favorites', withAuth, async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Recipe }],
+    const favsData = await Favorite.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+      include: [
+        { 
+          model: Recipe,
+          include: [User, Favorite]
+        }
+      ],
     });
+    
+    const favs = favsData.map((fav) => fav.get({ plain: true }));
 
-    const user = userData.get({ plain: true });
+    // find user
+    const user = await User.findOne({ where: { id: req.session.user_id } })
+    const userName = user.username;
 
     res.render('my-favorites', {
-      ...user,
+      favs,
+      userName,
       logged_in: true
     });
   } catch (err) {
