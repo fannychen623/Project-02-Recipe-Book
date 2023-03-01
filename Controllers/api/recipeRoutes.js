@@ -21,42 +21,39 @@ router.post('/', withAuth, async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const recipeData = await Recipe.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-        },
-        {
-          model: Favorite,
-        },
-      ],
+      include: [User, Favorite]
+        // {
+        //   model: User,
+        // },
+        // {
+        //   model: Favorite,
+        // },
+      // ],
     });
 
     
     const recipe = recipeData.get({ plain: true });
-    
-    // console.log("\n\i'm here\n\n");
-    
-    const favorited = false;
-    for (let i = 0; i < recipe.favorites.length; i++) {
-      if(recipe.favorites[i].user_id == req.session.user_id){
-        console.log("match")
-        // favorited = true;
-      }
-    }
 
-    console.log(favorited);
+    const favsData = await Favorite.findAll({ 
+      where: { 
+        user_id: req.session.user_id,
+        recipe_id: recipe.id,
+      },
+    });
 
-    // const favoriteItem = await Favorite.findOne({ 
-    //   where: { 
-    //     user_id: req.session.user_id,
-    //     recipe_id: recipe.id,
-    //   },
-    // });
+    const favs = favsData.map((fav) => fav.get({ plain: true }));
+    
+    let favorited = favs ? true : false
+
+    // if(favs){
+    //   favorited = true;
+    // }
 
     // const isAuthor = (recipe.user.id == req.session.user_id)
 
     res.render('recipe', {
       ...recipe,
+      favorited,
       logged_in: req.session.logged_in
     });
   } catch (err) {
