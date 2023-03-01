@@ -37,9 +37,6 @@ router.get('/:id', async (req, res) => {
     
     let favorited = favs.length > 0 ? true : false
 
-    console.log(favorited)
-    console.log(favs)
-
     // const isAuthor = (recipe.user.id == req.session.user_id)
 
     res.render('recipe', {

@@ -59,19 +59,10 @@
                         <textarea class="textarea" id="instruction-list" placeholder="step 1, step 2, ..."></textarea>
                     </div>
                 </div>
-                <div class="file has-name mt-5">
-                    <label class="file-label">
-                        <label class="label mr-5 mt-2">Add a picture of your dish! (JPG/PNG)</label>
-                        <form class="box" method="post" action="" enctype="multipart/form-data">
-                    <div class="box__input">
-                         <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
-                         <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
-                         <button class="box__button" type="submit">Upload</button>
-                    </div>
-                    <div class="box__uploading">Uploading…</div>
-                <div class="box__success">Done!</div>
-                <div class="box__error">Error! <span></span>.</div>
-                </form>
+                <div class="image-upload-div">
+                    <label for="img">Select image:</label>
+                    <input type="file" id="img-upload" name="img" accept="image/*">
+                </div>   
                 <div class="field">
                     <button type="submit" class="button has-text-weight-bold" id="new-recipe">Add Recipe</button>
                     <button class="button has-text-weight-bold">Close</button>
@@ -81,4 +72,5 @@
     </div>
 </div>
 
+<script src="node_modules/image-to-base64/image-to-base64.min.js"></script>
 <script src="/js/my-kitchen.js"></script>
