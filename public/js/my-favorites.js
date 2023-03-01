@@ -22,13 +22,15 @@ const favoriteRecipeHandler = async (event) => {
 };
 
 document
-.querySelector('#favorite-star')
+.querySelector('#blank-star')
 .addEventListener('click', favoriteRecipeHandler);
 
 
 // unfavorite recipe
-const deletePostHandler = async (event) => {
+const unfavoriteRecipeHandler = async (event) => {
   event.preventDefault();
+
+  console.log("\ni'm here\n")
   
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
@@ -38,7 +40,7 @@ const deletePostHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/my-favorites');
+      document.location.reload();
     } else {
       alert('Failed to remove favorite.');
     }
@@ -46,5 +48,5 @@ const deletePostHandler = async (event) => {
 };
 
 document
-  .querySelector('.delete-favorite')
-  .addEventListener('click', deletePostHandler);
+  .querySelector('#favorite-star')
+  .addEventListener('click', unfavoriteRecipeHandler);

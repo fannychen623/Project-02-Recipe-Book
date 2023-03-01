@@ -193,7 +193,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   height: 50px; 
   width: 50px;
   background-color: var(--trans);
-  background-image: url("../images/unfilledstar.png");
+  /* background-image: url("../images/unfilledstar.png"); */
   background-repeat: no-repeat;
   background-size: 50px;
   box-shadow: none;
@@ -204,6 +204,6 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
 }
 
 .box:hover {
-  background-image: url("../images/filledstar.png");
+  /* background-image: url("../images/filledstar.png"); */
   cursor: pointer;
 }

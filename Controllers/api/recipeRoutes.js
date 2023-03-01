@@ -22,16 +22,8 @@ router.get('/:id', async (req, res) => {
   try {
     const recipeData = await Recipe.findByPk(req.params.id, {
       include: [User, Favorite]
-        // {
-        //   model: User,
-        // },
-        // {
-        //   model: Favorite,
-        // },
-      // ],
     });
 
-    
     const recipe = recipeData.get({ plain: true });
 
     const favsData = await Favorite.findAll({ 
@@ -43,11 +35,10 @@ router.get('/:id', async (req, res) => {
 
     const favs = favsData.map((fav) => fav.get({ plain: true }));
     
-    let favorited = favs ? true : false
+    let favorited = favs.length > 0 ? true : false
 
-    // if(favs){
-    //   favorited = true;
-    // }
+    console.log(favorited)
+    console.log(favs)
 
     // const isAuthor = (recipe.user.id == req.session.user_id)
 
