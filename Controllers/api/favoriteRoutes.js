@@ -4,6 +4,7 @@ const withAuth = require('../../utils/auth');
 
 // create post
 router.post('/', withAuth, async (req, res) => {
+
   try {
     const newFavorite = await Favorite.create({
       ...req.body,

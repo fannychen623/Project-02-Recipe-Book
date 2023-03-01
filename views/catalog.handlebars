@@ -4,7 +4,7 @@
             {{#each recipes as |recipe|}}
             <div class="tile is-parent is-4 recipe-page" id="{{@index}}" style="display: none; ">
                 <article class="tile is-child is-info">
-                <a class="title" href="/recipe/{{recipe.id}}">{{recipe.recipe_name}}</a>
+                <a class="title" href="/api/recipes/{{recipe.id}}">{{recipe.recipe_name}}</a>
                 <figure class="image is-4by3 my-6">
                     {{#if recipe_image}}<img src="{{recipe_image}}">
                     {{else}}<img src="./images/default_image.png">

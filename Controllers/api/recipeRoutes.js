@@ -29,6 +29,17 @@ router.get('/:id', async (req, res) => {
     });
 
     const recipe = recipeData.get({ plain: true });
+ 
+    console.log("\n\ni'm here\n\n")
+
+    const favoriteItem = await Favorite.findOne({ 
+      where: { 
+        user_id: req.session.user_id,
+        recipe_id: recipe.id
+      } 
+    })
+
+    // const isAuthor = (recipe.user.id == req.session.user_id)
 
     res.render('recipe', {
       ...recipe,

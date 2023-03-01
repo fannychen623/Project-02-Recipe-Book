@@ -20,7 +20,6 @@ router.get('/catalog', async (req, res) => {
     
     for (let i = 0; i < recipes.length; i++) {
       recipes[i].favorites_count = recipes[i].favorites.length;
-      console.log(recipes[i].favorites_count)
     }
 
     // Pass serialized data and session flag into template
@@ -71,6 +70,8 @@ router.get('/my-favorites', withAuth, async (req, res) => {
     // find user
     const user = await User.findOne({ where: { id: req.session.user_id } })
     const userName = user.username;
+    
+    // const userName = req.session.username;
 
     res.render('my-favorites', {
       favs,
