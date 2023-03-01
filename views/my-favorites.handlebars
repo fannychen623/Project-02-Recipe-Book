@@ -1,10 +1,10 @@
 <div id="my-favorites">
     <div class="field mt-5 my-favorites-header">
-        <p class="title is-2 my-6">{{username}}'s Favorites</p>
+        <p class="title is-2 my-6">{{userName}}'s Favorites</p>
     </div>
     <div class="columns is-multiline">
-        {{#if recipes.length}}
-        {{#each recipes as |recipe|}}
+        {{#if favs}}
+        {{#each favs as |fav|}}
         <div class="column is-half">
             <div class="card mb-5">
                 <div class="columns is-vcentered pl-5 py-3">
@@ -16,8 +16,8 @@
                         </div>
                     </div>
                     <div class="column">
-                        <a class="title is-3 is-spaced" href="/">{{recipe.recipe_name}}</a>
-                        <p class="subtitle is-5 mt-3">Popularity: xx<img src="./images/star.png" alt="Placeholder image" style="height: 20px; width: auto; margin-left: 5%;"></p>
+                        <a class="title is-3 is-spaced" href="/">{{fav.recipe.recipe_name}}</a>
+                        <p class="subtitle is-5 mt-3">Popularity: {{fav.recipe.favorites.length}}<img src="./images/star.png" alt="Placeholder image" style="height: 20px; width: auto; margin-left: 5%;"></p>
                         <button type="submit" class="button has-text-weight-bold is-ghost mb-1 delete-favorite" id="delete-favorite">Remove</button>
                     </div>
                 </div>
