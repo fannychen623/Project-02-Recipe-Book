@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Recipe, User } = require('../../models');
+const { Recipe, User, Favorite } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // create recipe
@@ -25,19 +25,33 @@ router.get('/:id', async (req, res) => {
         {
           model: User,
         },
+        {
+          model: Favorite,
+        },
       ],
     });
 
+    
     const recipe = recipeData.get({ plain: true });
- 
-    console.log("\n\ni'm here\n\n")
+    
+    // console.log("\n\i'm here\n\n");
+    
+    const favorited = false;
+    for (let i = 0; i < recipe.favorites.length; i++) {
+      if(recipe.favorites[i].user_id == req.session.user_id){
+        console.log("match")
+        // favorited = true;
+      }
+    }
 
-    const favoriteItem = await Favorite.findOne({ 
-      where: { 
-        user_id: req.session.user_id,
-        recipe_id: recipe.id
-      } 
-    })
+    console.log(favorited);
+
+    // const favoriteItem = await Favorite.findOne({ 
+    //   where: { 
+    //     user_id: req.session.user_id,
+    //     recipe_id: recipe.id,
+    //   },
+    // });
 
     // const isAuthor = (recipe.user.id == req.session.user_id)
 
