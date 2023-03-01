@@ -18,6 +18,15 @@
           <a class="navbar-item has-text-white is-size-3" href="/catalog">The Potluck</a>
         </div>
         <div class="navbar-end">
+          <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link has-text-white arrow-head">My Kitchen</a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="/my-kitchen">My Recipes</a>
+              <a class="navbar-item" href="/my-favorites">My Favorites</a>
+              <hr class="navbar-divider m-3">
+              <a class="navbar-item" href="/"><button class="no-button has-text-weight-bold p-0" id="logout">Close Kitchen</button></a>
+            </div>
+          </div>
           {{#if logged_in}}
           <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link has-text-white arrow-head">My Kitchen</a>
