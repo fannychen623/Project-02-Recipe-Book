@@ -21,13 +21,13 @@ const favoriteRecipeHandler = async (event) => {
   }
 };
 
-
+document
+.querySelector('#blank-star')
+.addEventListener('click', favoriteRecipeHandler);
 
 // unfavorite recipe
 const unfavoriteRecipeHandler = async (event) => {
   event.preventDefault();
-
-  console.log("\ni'm here\n")
   
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
@@ -47,7 +47,3 @@ const unfavoriteRecipeHandler = async (event) => {
 document
   .querySelector('#favorite-star')
   .addEventListener('click', unfavoriteRecipeHandler);
-
-document
-.querySelector('#blank-star')
-.addEventListener('click', favoriteRecipeHandler);
