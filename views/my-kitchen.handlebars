@@ -19,7 +19,7 @@
                         <div class="column">
                             <a class="title is-3 is-spaced" href="/api/recipes/{{recipe.id}}">{{recipe.recipe_name}}</a>
                             <p class="subtitle is-5 mt-3">Popularity: {{recipe.favorites_count}}<img src="./images/star.png" alt="Placeholder image" style="height: 20px; width: auto; margin-left: 5%;"></p>
-                            <button type="submit" class="button has-text-weight-bold is-ghost mb-1 delete-recipe" id="delete-recipe">Remove</button>
+                            <button type="submit" class="button has-text-weight-bold is-ghost mb-1 delete-recipe" data-id="{{recipe.id}}" id="delete-recipe">Remove</button>
                         </div>
                     </div>
                 </div>
