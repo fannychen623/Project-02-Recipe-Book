@@ -15,9 +15,16 @@
     <nav class="navbar has-text-weight-bold is-size-5" role="navigation" aria-label="main navigation">
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item has-text-white is-size-3" href="/catalog">The Potluck</a>
+          <a class="navbar-item has-text-white is-size-3" href="/">The Potluck</a>
         </div>
         <div class="navbar-end">
+          <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link has-text-white arrow-head">The Potluck</a>
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="/catalog">Catalog</a>
+              <a class="navbar-item" href="/">Search</a>
+            </div>
+          </div>
           {{#if logged_in}}
           <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link has-text-white arrow-head">My Kitchen</a>
