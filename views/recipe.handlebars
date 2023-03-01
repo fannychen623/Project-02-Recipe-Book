@@ -2,8 +2,10 @@
     <div class="card-content">
         <div class="media">
             <div class="media-left">
-                <figure class="image">
-                    <img src="{{recipe_image}}" alt="Recipe image" style="height: 300px; width: 400px; auto;">
+                <figure class="image">            
+                    {{#if recipe_image}} <img src="{{recipe_image}}" alt="Recipe image" style="height: 300px; width: 400px; auto;">
+                    {{else}}<img src="/images/default_image.png" alt="Recipe image" style="height: 300px; width: 400px; auto;">
+                    {{/if}}
                 </figure>
             </div>
             <div class="media-content">
@@ -22,6 +24,5 @@
     </div>
 </div>
 
-{{!-- <script src="/js/my-favorites.js"></script> --}}
 <script src="/js/favorite-add.js"></script>
 <script src="/js/favorite-remove.js"></script>

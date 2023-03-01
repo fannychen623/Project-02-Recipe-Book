@@ -90,10 +90,6 @@ document
   .querySelector('.new-recipe-form')
   .addEventListener('submit', newRecipeHandler);
 
-// document
-//   .querySelector('.delete-recipe')
-//   .addEventListener('click', delButtonHandler); 
-
 let recipes = document.querySelectorAll('.delete-recipe')
 
 recipes.forEach((recipe) => {
