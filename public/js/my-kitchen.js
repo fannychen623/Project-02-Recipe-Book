@@ -69,7 +69,6 @@ const newRecipeHandler = async (event) => {
 };
   
 const delButtonHandler = async (event) => {
-  console.log("\n\ni'm here\n\n")
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
     
@@ -85,14 +84,10 @@ const delButtonHandler = async (event) => {
   }
 };
 
-// creation listener
 document
   .querySelector('.new-recipe-form')
   .addEventListener('submit', newRecipeHandler);
 
-// deletion listener
-let recipes = document.querySelectorAll('.delete-recipe')
-
-recipes.forEach((recipe) => {
-  recipe.addEventListener('click', delButtonHandler)
-})
+document
+  .querySelector('.delete-recipe')
+  .addEventListener('click', delButtonHandler);  
