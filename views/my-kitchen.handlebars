@@ -12,7 +12,9 @@
                         <div class="column is-5">
                             <div class="card-image">
                                 <figure class="image">
-                                    <img src="{{recipe_image}}" alt="Placeholder image" style="height: 200px; width: auto;">
+                                    {{#if recipe_image}}<img src="{{recipe_image}}" alt="Placeholder image" style="height: 200px; width: auto;">
+                                    {{else}}<img src="./images/default_image.png" alt="Placeholder image" style="height: 200px; width: auto;">
+                                    {{/if}}
                                 </figure>
                             </div>
                         </div>
