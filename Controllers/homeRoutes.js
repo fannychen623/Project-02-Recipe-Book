@@ -37,10 +37,19 @@ router.get('/my-kitchen', withAuth, async (req, res) => {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Recipe }],
+      include: [
+        { 
+          model: Recipe,
+          include: Favorite
+        }
+      ],
     });
 
     const user = userData.get({ plain: true });
+
+    for (let i = 0; i < user.recipes.length; i++) {
+      user.recipes[i].favorites_count = user.recipes[i].favorites.length;
+    }
 
     res.render('my-kitchen', {
       ...user,

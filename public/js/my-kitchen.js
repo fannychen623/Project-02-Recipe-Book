@@ -91,7 +91,7 @@ document
 
 // document
 //   .querySelector('.delete-recipe')
-//   .addEventListener('click', delButtonHandler);  
+//   .addEventListener('click', delButtonHandler); 
 
 let recipes = document.querySelectorAll('.delete-recipe')
 
