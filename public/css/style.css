@@ -135,6 +135,13 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   border: none;
 }
 
+.box__dragndrop,
+.box__uploading,
+.box__success,
+.box__error {
+
+  display: none;
+}
 .login-buttons {
   display: flex;
   justify-content: space-between;
