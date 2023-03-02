@@ -43,6 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+const fileInput = document.querySelector('#file-input input[type=file]');
+fileInput.onchange = () => {
+  if (fileInput.files.length > 0) {
+    const fileName = document.querySelector('#file-input .file-name');
+    fileName.textContent = fileInput.files[0].name;
+  }
+}
+
 const randomRecipeHandler = async (event) => {
   event.preventDefault();
 
@@ -95,25 +103,6 @@ const newRecipeHandler = async (event) => {
     }
   }
 };
-  
-let image_upload;
-
-function readFile() {
-  
-  if (!this.files || !this.files[0]) return;
-    
-  const FR = new FileReader();
-    
-  FR.addEventListener("load", function(evt) {
-    // console.log(evt.target.result)
-    image_upload = evt.target.result;
-  }); 
-    
-  FR.readAsDataURL(this.files[0]);
-  
-}
-
-document.querySelector("#img-upload").addEventListener("change", readFile);
 
 const delButtonHandler = async (event) => {
 
@@ -132,6 +121,22 @@ const delButtonHandler = async (event) => {
   }
 };
 
+let image_upload;
+function readFile() {
+  if (!this.files || !this.files[0]) return;
+  const FR = new FileReader();
+  FR.addEventListener("load", function(evt) {
+    // console.log(evt.target.result)
+    image_upload = evt.target.result;
+  }); 
+    
+  FR.readAsDataURL(this.files[0]);
+}
+
+let recipes = document.querySelectorAll('.delete-recipe')
+recipes.forEach((recipe) => {
+  recipe.addEventListener('click', delButtonHandler)
+})
 
 document
 .querySelector('.random-recipe-form')
@@ -141,8 +146,6 @@ document
   .querySelector('.new-recipe-form')
   .addEventListener('submit', newRecipeHandler);
 
-let recipes = document.querySelectorAll('.delete-recipe')
-
-recipes.forEach((recipe) => {
-  recipe.addEventListener('click', delButtonHandler)
-})
+document
+  .querySelector("#img-upload")
+  .addEventListener("change", readFile);
