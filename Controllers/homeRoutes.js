@@ -8,6 +8,12 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/modify', (req, res) => {
+  res.render('modify', { 
+    logged_in: req.session.logged_in 
+  });
+});
+
 router.get('/catalog', async (req, res) => {
   try {
     // Get all projects and JOIN with user data

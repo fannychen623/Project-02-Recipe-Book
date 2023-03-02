@@ -1,0 +1,66 @@
+<div class="card my-6">
+    <div class="card-content">
+        <div class="media m-2">
+            <div class="media-left">
+                <figure class="image">            
+                    {{#if recipe_image}} <img src="{{recipe_image}}" alt="Recipe image" style="object-fit: cover; height: 300px; width: 300px;">
+                    {{else}}<img src="/images/default_image.png" alt="Recipe image" style="object-fit: cover; height: 300px; width: 300px;">
+                    {{/if}}
+                </figure>
+                <div id="file-input" class="file has-name px-5 my-5">
+                    <label class="file-label">
+                        <input class="file-input" type="file" name="img" id="img-upload">
+                        <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                                Choose a file…
+                            </span>
+                        </span>
+                        <span class="file-name has-text-white">
+                            No file uploaded
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <div class="media-content">
+                <div class="field pt-5 px-5">
+                    <label class="label">Recipe Name</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" type="text" id="recipe-name" value={{recipe_name}}>
+                        <span class="icon is-small is-left"><i class="fas fa-cutlery"></i></span>
+                    </div>
+                </div>
+                <p class="title is-4 ml-6 pb-5">Recipe By: {{user.username}}</p>
+                <p class="title is-4 ml-6 pb-6">Liked by: {{favorites.length}} <img src="/images/follower.png" width="20"></p>
+            </div>
+        </div>
+        <div class="content pt-5 m-2">
+            <div class="columns">
+                <div class="column is-4">
+                    <p class="title is-4" style="white-space: pre-line">Ingredients:<br><br></p>
+                    <div class="field px-5">
+                        <div class="control">
+                            <textarea class="textarea" id="ingredient-list" value={{ingredients}}></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <p class="title is-4" style="white-space: pre-line">Instructions:<br><br></p>
+                    <div class="field px-5">
+                        <div class="control">
+                            <textarea class="textarea" id="instruction-list" value={{instructions}}></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field p-5 modify-recipe-buttons">
+            <a href="/my-kitchen"><button class="button has-text-weight-bold">Cancel</button></a>
+            <button type="submit" class="button has-text-weight-bold" id="update-recipe">Update Recipe</button>
+        </div>
+    </div>
+</div>
+
+<script src="/js/modify.js"></script>

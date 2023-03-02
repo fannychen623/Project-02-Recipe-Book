@@ -28,6 +28,7 @@
                         <div class="column">
                             <a class="title is-3 is-spaced" href="/api/recipes/{{recipe.id}}">{{recipe.recipe_name}}</a>
                             <p class="subtitle is-5 mt-3">Liked By: {{recipe.favorites_count}} <img src="/images/follower.png" width="20"></p>
+                            <button type="submit" class="button has-text-weight-bold is-ghost mb-1 modify-recipe" data-id="{{recipe.id}}" id="modify-recipe">Modify</button>
                             <button type="submit" class="button has-text-weight-bold is-ghost mb-1 delete-recipe" data-id="{{recipe.id}}" id="delete-recipe">Remove</button>
                         </div>
                     </div>
