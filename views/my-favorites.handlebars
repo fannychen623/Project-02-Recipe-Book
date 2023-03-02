@@ -10,11 +10,14 @@
                 <div class="columns is-vcentered pl-5 py-3">
                     <div class="column is-5">
                         <div class="card-image">
-                            
                             <figure class="image">
-                                {{#if fav.recipe.recipe_image}}<img src="{{fav.recipe.recipe_image}}" alt="Placeholder image" style="object-fit: cover; height: 200px; width: 200px;">
-                                {{else}}<img src="./images/default_image.png" alt="Placeholder image" style="object-fit: cover; height: 200px; width: 200px;">
+                                <a href="/api/recipes/{{fav.recipe.id}}">
+                                {{#if fav.recipe.recipe_image}}
+                                    <img src="{{fav.recipe.recipe_image}}" alt="Placeholder image" style="object-fit: cover; height: 200px; width: 200px;">
+                                {{else}}
+                                    <img src="./images/default_image.png" alt="Placeholder image" style="object-fit: cover; height: 200px; width: 200px;">
                                 {{/if}}
+                                </a>
                             </figure>
                         </div>
                     </div>

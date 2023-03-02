@@ -18,7 +18,7 @@ router.post('/', withAuth, async (req, res) => {
 
 
 // display recipe
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
   try {
     const recipeData = await Recipe.findByPk(req.params.id, {
       include: [User, Favorite]

@@ -14,12 +14,18 @@
                 {{/if}}
                 <p class="title is-2 ml-6 pt-6">{{recipe_name}}</p></br>
                 <p class="title is-4 ml-6 pb-6">Recipe By: {{user.username}}</p>
-                <p class="title is-4 ml-6">Ingredients: <br>{{ingredients}}</p>
+                {{!-- favorite count? --}}
             </div>
         </div>
-
-        <div class="content pb-6">
-            <p class="title is-4 my-6">Instructions: <br>{{instructions}}</p>
+        <div class="content pt-5 m-2">
+            <div class="columns">
+                <div class="column is-4">
+                    <p class="title is-4" style="white-space: pre-line">Ingredients:<br><br>{{ingredients}}</p>
+                </div>
+                <div class="column">
+                    <p class="title is-4" style="white-space: pre-line">Instructions:<br><br>{{instructions}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

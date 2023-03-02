@@ -12,9 +12,13 @@
                 <div class="card p-4 has-text-centered">
                     <div class="card-image mb-2">
                         <figure class="image">
-                            {{#if recipe_image}}<img src="{{recipe_image}}" alt="Placeholder image" style="object-fit: cover; height: 250px; width: 250px;">
-                            {{else}}<img src="./images/default_image.png" alt="Placeholder image" style="object-fit: cover; height: 250px; width: 250px;">
+                            <a href="/api/recipes/{{recipe.id}}">
+                            {{#if recipe_image}}
+                                <img src="{{recipe_image}}" alt="Placeholder image" style="object-fit: cover; height: 250px; width: 250px;">
+                            {{else}}
+                                <img src="./images/default_image.png" alt="Placeholder image" style="object-fit: cover; height: 250px; width: 250px;">
                             {{/if}}
+                            </a>
                         </figure>
                     </div>
                     <a class="title is-4 is-spaced" href="/api/recipes/{{recipe.id}}">{{recipe.recipe_name}}</a>

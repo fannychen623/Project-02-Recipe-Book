@@ -6,9 +6,13 @@
                 <article class="tile is-child is-info">
                 <a class="title" href="/api/recipes/{{recipe.id}}">{{recipe.recipe_name}}</a>
                 <figure class="image m-6">
-                    {{#if recipe_image}}<img src="{{recipe_image}}" style="object-fit: cover; height: 300px; width: 300px;">
-                    {{else}}<img src="./images/default_image.png" style="object-fit: cover; height: 300px; width: 300px;">
+                    <a href="/api/recipes/{{recipe.id}}">
+                    {{#if recipe_image}}
+                        <img src="{{recipe_image}}" style="object-fit: cover; height: 300px; width: 300px;">
+                    {{else}}
+                        <img src="./images/default_image.png" style="object-fit: cover; height: 300px; width: 300px;">
                     {{/if}}
+                    </a>
                 </figure>
                 <p class="subtitle has-text-weight-bold">Recipe by: {{recipe.user.username}}</p>
                 <p class="subtitle has-text-weight-bold">Liked by: {{favorites_count}} <img src="/images/follower.png" width="20"></p>

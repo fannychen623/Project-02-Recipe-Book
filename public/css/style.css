@@ -76,7 +76,9 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   color: var(--brown5);
   cursor: url("../images/nextpage.png") 35 10, auto;
   position: absolute;
-  bottom: 10%;
+  padding-top: 25%;
+  padding-bottom: 30%;
+  top: 10%;
   right: -7%;
 }
 
