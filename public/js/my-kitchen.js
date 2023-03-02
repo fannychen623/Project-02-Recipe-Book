@@ -116,6 +116,7 @@ function readFile() {
 document.querySelector("#img-upload").addEventListener("change", readFile);
 
 const delButtonHandler = async (event) => {
+
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
@@ -130,6 +131,7 @@ const delButtonHandler = async (event) => {
     }
   }
 };
+
 
 document
 .querySelector('.random-recipe-form')

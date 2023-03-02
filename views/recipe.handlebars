@@ -2,12 +2,16 @@
     <div class="card-content">
         <div class="media">
             <div class="media-left">
-                <figure class="image">
-                    <img src="{{recipe_image}}" alt="Recipe image" style="height: 300px; width: 400px; auto;">
+                <figure class="image">            
+                    {{#if recipe_image}} <img src="{{recipe_image}}" alt="Recipe image" style="height: 300px; width: 400px; auto;">
+                    {{else}}<img src="/images/default_image.png" alt="Recipe image" style="height: 300px; width: 400px; auto;">
+                    {{/if}}
                 </figure>
             </div>
             <div class="media-content">
-                <div class="box" id="favorite star"></div>
+                {{#if favorited}} <div class="box" id="favorite-star" data-id="{{id}}" style="background-image: url('/images/filledstar.png')"></div>  
+                {{else}} <div class="box" id="blank-star" data-id="{{id}}" style="background-image: url('/images/unfilledstar.png')"></div>  
+                {{/if}}
                 <p class="title is-2 ml-6 pt-6">{{recipe_name}}</p></br>
                 <p class="title is-4 ml-6 pb-6">Recipe By: {{user.username}}</p>
                 <p class="title is-4 ml-6">Ingredients: {{ingredients}}</p>
@@ -19,3 +23,6 @@
         </div>
     </div>
 </div>
+
+<script src="/js/favorite-add.js"></script>
+<script src="/js/favorite-remove.js"></script>

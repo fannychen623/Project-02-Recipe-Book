@@ -5,11 +5,9 @@
             <div class="tile is-parent is-4 recipe-page" id="{{@index}}" style="display: none; ">
                 <article class="tile is-child is-info">
                 <a class="title" href="/api/recipes/{{recipe.id}}">{{recipe.recipe_name}}</a>
-                <figure class="image m-6">
-                    {{#if recipe_image}}
-                    <img src="{{recipe_image}}" id="catalog_image">
-                    {{else}}
-                    <img src="/images/default_image.png" id="catalog_image">
+                <figure class="image is-square my-6">
+                    {{#if recipe_image}}<img src="{{recipe_image}}" style="height:300px width:auto">
+                    {{else}}<img src="./images/default_image.png">
                     {{/if}}
                 </figure>
                 <p class="subtitle has-text-weight-bold">Recipe by: {{recipe.user.username}}</p>

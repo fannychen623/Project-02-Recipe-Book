@@ -15,14 +15,16 @@
                         <div class="column is-5">
                             <div class="card-image">
                                 <figure class="image">
-                                    <img src="{{recipe_image}}" alt="Placeholder image" style="height: 200px; width: auto;">
+                                    {{#if recipe_image}}<img src="{{recipe_image}}" alt="Placeholder image" style="height: 200px; width: auto;">
+                                    {{else}}<img src="./images/default_image.png" alt="Placeholder image" style="height: 200px; width: auto;">
+                                    {{/if}}
                                 </figure>
                             </div>
                         </div>
                         <div class="column">
-                            <a class="title is-3 is-spaced" href="/my-kitchen/{{recipe.id}}">{{recipe.recipe_name}}</a>
-                            <p class="subtitle is-5 mt-3">Liked By: xx <img src="/images/follower.png" width="20"></p>
-                            <button type="submit" class="button has-text-weight-bold is-ghost mb-1 delete-recipe" id="delete-recipe">Remove</button>
+                            <a class="title is-3 is-spaced" href="/api/recipes/{{recipe.id}}">{{recipe.recipe_name}}</a>
+                            <p class="subtitle is-5 mt-3">Liked By: {{recipe.favorites_count}} <img src="/images/follower.png" width="20"></p>
+                            <button type="submit" class="button has-text-weight-bold is-ghost mb-1 delete-recipe" data-id="{{recipe.id}}" id="delete-recipe">Remove</button>
                         </div>
                     </div>
                 </div>
@@ -60,18 +62,10 @@
                         <textarea class="textarea" id="instruction-list" placeholder="step 1, step 2, ..."></textarea>
                     </div>
                 </div>
-                <div class="file has-name px-5 pb-5">
-                    <label class="file-label">
-                        <label class="label mr-5 mt-2">Add a picture of your dish! (JPG/PNG)</label>
-                        <input class="file-input" type="file" name="resume">
-                        <span class="file-cta">
-                            <span class="file-icon"><i class="fas fa-upload"></i></span>
-                            <span class="file-label">Choose a file…</span>
-                        </span>
-                        <span class="file-name"></span>
-                    </label>
+                <div class="image-upload-div">
+                    <label for="img">Select image:</label>
+                    <input type="file" id="img-upload" name="img" accept="image/*">
                 </div>
-                </form>
                 <div class="field p-5 new-recipe-buttons">
                     <button class="button has-text-weight-bold close-modal">Close</button>
                     <button type="submit" class="button has-text-weight-bold" id="new-recipe">Add Recipe</button>
@@ -127,11 +121,12 @@
                 </div>
                 <div class="field p-5 ai-recipe-buttons">
                     <button class="button has-text-weight-bold close-modal">Close</button>
-                    <button type="submit" class="button has-text-weight-bold" id="new-recipe">Add Recipe</button>
+                    <button type="submit" class="button has-text-weight-bold" id="add-random-recipe">Add Recipe</button>
                 </div>
             </form>
         </section>
     </div>
 </div>
 
+<script src="node_modules/image-to-base64/image-to-base64.min.js"></script>
 <script src="/js/my-kitchen.js"></script>
