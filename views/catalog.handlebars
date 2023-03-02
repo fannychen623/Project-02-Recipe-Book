@@ -5,30 +5,30 @@
             <div class="tile is-parent is-4 recipe-page" id="{{@index}}" style="display: none; ">
                 <article class="tile is-child is-info">
                 <a class="title" href="/api/recipes/{{recipe.id}}">{{recipe.recipe_name}}</a>
-
                 <figure class="image is-square my-6">
                     {{#if recipe_image}}<img src="{{recipe_image}}" style="height:300px width:auto">
                     {{else}}<img src="./images/default_image.png">
                     {{/if}}
                 </figure>
                 <p class="subtitle has-text-weight-bold">Recipe by: {{recipe.user.username}}</p>
-                <p class="subtitle has-text-weight-bold">Popularity:{{favorites_count}} </p>
+                <p class="subtitle has-text-weight-bold">Liked by: {{favorites_count}} <img src="/images/follower.png" width="20"></p>
                 </article>
             </div>
             {{/each}}
         {{/if}}
     </div>
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-        <a class="pagination-previous has-text-weight-semibold">Previous</a>
-        <a class="pagination-next has-text-weight-semibold">Next</a>
         <ul class="pagination-list">
             <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
             <li><span class="pagination-ellipsis">&hellip;</span></li>
-            <li><a class="pagination-link is-current has-text-weight-semibold" aria-label="Current page" aria-current="page" id="current-page">1</a></li>
+            <li><a class="pagination-link is-current has-text-weight-semibold" aria-label="Current page" aria-current="page"
+                    id="current-page">1</a></li>
             <li><span class="pagination-ellipsis">&hellip;</span></li>
             <li><a class="pagination-link" aria-label="Goto last page" id="last-page"></a></li>
         </ul>
     </nav>
+    <a class="pagination-previous has-text-weight-semibold">Previous</a>
+    <a class="pagination-next has-text-weight-semibold">Next</a>
 </div>
 
 <script src="/js/catalog.js"></script>

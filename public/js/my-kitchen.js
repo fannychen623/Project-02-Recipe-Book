@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Add a click event on various child elements to close the parent modal
-  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .close-modal') || []).forEach(($close) => {
     const $target = $close.closest('.modal');
 
     $close.addEventListener('click', () => {
@@ -43,6 +43,33 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+const randomRecipeHandler = async (event) => {
+  event.preventDefault();
+
+  let providedIngredients = document.querySelector('#provided-ingredient-list').value.trim();
+  providedIngredients = providedIngredients.replace(/, /g, "\\n").replace(/,/g, "\\n")
+  const ingredientPrompt = "Write a recipe based on these ingredients and instructions:\\n\\nIngredients:\\n" + providedIngredients + "\\n\\nInstructions:"
+  document.querySelector('#loadingGIF').style.display= "block";
+  const response = await fetch(`/api/openai/`, {
+    method: 'POST',
+    body: JSON.stringify({ ingredientPrompt }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }); 
+  const aiResponse = await response.json().then(data => (
+    document.querySelector('#loadingGIF').style.display= "none",
+    document.querySelector('#random-recipe-name').value = data.title,
+    document.querySelector('#random-ingredient-list').textContent = data.ingredients,
+    document.querySelector('#random-instruction-list').textContent = data.instructions
+  ));
+
+  if (response.ok) {
+    alert('The AI Chef has spoken!');
+  } else {
+    alert('Failed to create recipe');
+  }
+};
 
 const newRecipeHandler = async (event) => {
   event.preventDefault();
@@ -88,8 +115,6 @@ function readFile() {
 
 document.querySelector("#img-upload").addEventListener("change", readFile);
 
-
-
 const delButtonHandler = async (event) => {
 
   if (event.target.hasAttribute('data-id')) {
@@ -107,6 +132,10 @@ const delButtonHandler = async (event) => {
   }
 };
 
+
+document
+.querySelector('.random-recipe-form')
+.addEventListener('submit', randomRecipeHandler);
 
 document
   .querySelector('.new-recipe-form')

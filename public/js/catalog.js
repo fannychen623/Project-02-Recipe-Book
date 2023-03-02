@@ -3,11 +3,28 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById("1").style.display= "block" ;
   const page1 = document.getElementById("0");
   const page2 = document.getElementById("1");
-  page1.querySelector('.image').style.transform= "rotate(353deg)";
+  page1.querySelector('.image').style.transform= "rotate(355deg)";
   if (page2) {
-    page2.querySelector('.image').style.transform= "rotate(7deg)";
+    page2.querySelector('.image').style.transform= "rotate(5deg)";
   }
   document.getElementById("last-page").innerHTML = Math.ceil(document.querySelectorAll('.recipe-page').length/2);
+  document.querySelectorAll('.recipe-page').forEach(function(el) {
+    if (el.querySelector('.title').textContent.length > 15) {
+      let firstrow = el.querySelector('.title').textContent.substr(0, 15);
+      if (firstrow.indexOf(" ") < 0) {
+        firstrow = el.querySelector('.title').textContent.substring(0, el.querySelector('.title').textContent.indexOf(' '));
+      } else {
+        firstrow = firstrow.substr(0, Math.min(firstrow.length, firstrow.lastIndexOf(" ")));
+      }
+      let secondrow = el.querySelector('.title').textContent.replace(firstrow, "");
+      secondrow = secondrow.trimStart();
+      console.log(firstrow)
+      console.log(secondrow)
+      el.querySelector('.title').innerHTML = firstrow + "<br>" + secondrow
+      el.style.position = "relative";
+      el.style.top = "-30px";
+    }
+  });
 }, false);
 
 function nextPage() {
@@ -20,7 +37,6 @@ function nextPage() {
 
     const catalog2 = (currentPage * 2) - 1
     const catalog1 = catalog2 - 1
-    console.log((catalog1 + 4) % 4)
     const page1 = document.getElementById(catalog1);
     const page2 = document.getElementById(catalog2);
 
@@ -37,14 +53,14 @@ function nextPage() {
     }
 
     if ((catalog1 + 4) % 4 == 0) {
-      page1.querySelector('.image').style.transform= "rotate(353deg)";
+      page1.querySelector('.image').style.transform= "rotate(355deg)";
       if (page2) {
-        page2.querySelector('.image').style.transform= "rotate(7deg)";
+        page2.querySelector('.image').style.transform= "rotate(5deg)";
       }
     } else if ((catalog1 + 4) % 4 == 2) {
-      page1.querySelector('.image').style.transform= "rotate(7deg)";
+      page1.querySelector('.image').style.transform= "rotate(5deg)";
       if (page2) {
-        page2.querySelector('.image').style.transform= "rotate(353deg)";
+        page2.querySelector('.image').style.transform= "rotate(355deg)";
       }
     };
   };
@@ -76,14 +92,14 @@ function previousPage() {
     }
 
     if ((catalog1 + 4) % 4 == 0) {
-      page1.querySelector('.image').style.transform= "rotate(353deg)";
+      page1.querySelector('.image').style.transform= "rotate(355deg)";
       if (page2) {
-        page2.querySelector('.image').style.transform= "rotate(7deg)";
+        page2.querySelector('.image').style.transform= "rotate(5deg)";
       }
     } else if ((catalog1 + 4) % 4 == 2) {
-      page1.querySelector('.image').style.transform= "rotate(7deg)";
+      page1.querySelector('.image').style.transform= "rotate(5deg)";
       if (page2) {
-        page2.querySelector('.image').style.transform= "rotate(353deg)";
+        page2.querySelector('.image').style.transform= "rotate(355deg)";
       }
     };
   };
