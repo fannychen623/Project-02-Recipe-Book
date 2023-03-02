@@ -43,31 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-const newRecipeHandler = async (event) => {
-  event.preventDefault();
-
-  const recipe_name = document.querySelector('#recipe-name').value.trim();
-  const ingredients = document.querySelector('#ingredient-list').value.trim();
-  const instructions = document.querySelector('#instruction-list').value.trim();
-
-  if (recipe_name && ingredients && instructions) {
-    const response = await fetch(`/api/recipes`, {
-      method: 'POST',
-      body: JSON.stringify({ recipe_name, ingredients, instructions }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (response.ok) {
-      alert('New recipe created!');
-      document.location.replace('/my-kitchen');
-    } else {
-      alert('Failed to create recipe');
-    }
-  }
-};
-
 const randomRecipeHandler = async (event) => {
   event.preventDefault();
 
@@ -95,11 +70,55 @@ const randomRecipeHandler = async (event) => {
     alert('Failed to create recipe');
   }
 };
+
+const newRecipeHandler = async (event) => {
+  event.preventDefault();
+
+  const recipe_name = document.querySelector('#recipe-name').value.trim();
+  const ingredients = document.querySelector('#ingredient-list').value.trim();
+  const instructions = document.querySelector('#instruction-list').value.trim();
+  const recipe_image = image_upload;
+
+  if (recipe_name && ingredients && instructions) {
+    const response = await fetch(`/api/recipes`, {
+      method: 'POST',
+      body: JSON.stringify({ recipe_name, ingredients, instructions, recipe_image }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      document.location.replace('/my-kitchen');
+    } else {
+      alert('Failed to create recipe');
+    }
+  }
+};
   
+let image_upload;
+
+function readFile() {
+  
+  if (!this.files || !this.files[0]) return;
+    
+  const FR = new FileReader();
+    
+  FR.addEventListener("load", function(evt) {
+    // console.log(evt.target.result)
+    image_upload = evt.target.result;
+  }); 
+    
+  FR.readAsDataURL(this.files[0]);
+  
+}
+
+document.querySelector("#img-upload").addEventListener("change", readFile);
+
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
-    
+
     const response = await fetch(`/api/recipes/${id}`, {
       method: 'DELETE',
     });
@@ -113,13 +132,15 @@ const delButtonHandler = async (event) => {
 };
 
 document
+.querySelector('.random-recipe-form')
+.addEventListener('submit', randomRecipeHandler);
+
+document
   .querySelector('.new-recipe-form')
   .addEventListener('submit', newRecipeHandler);
 
-document
-  .querySelector('.random-recipe-form')
-  .addEventListener('submit', randomRecipeHandler);
+let recipes = document.querySelectorAll('.delete-recipe')
 
-document
-  .querySelector('.delete-recipe')
-  .addEventListener('click', delButtonHandler);
+recipes.forEach((recipe) => {
+  recipe.addEventListener('click', delButtonHandler)
+})

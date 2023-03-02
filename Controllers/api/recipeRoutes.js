@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Recipe, User } = require('../../models');
+const { Recipe, User, Favorite } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // create recipe
@@ -21,17 +21,27 @@ router.post('/', withAuth, async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const recipeData = await Recipe.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-        },
-      ],
+      include: [User, Favorite]
     });
 
     const recipe = recipeData.get({ plain: true });
 
+    const favsData = await Favorite.findAll({ 
+      where: { 
+        user_id: req.session.user_id,
+        recipe_id: recipe.id,
+      },
+    });
+
+    const favs = favsData.map((fav) => fav.get({ plain: true }));
+    
+    let favorited = favs.length > 0 ? true : false
+
+    // const isAuthor = (recipe.user.id == req.session.user_id)
+
     res.render('recipe', {
       ...recipe,
+      favorited,
       logged_in: req.session.logged_in
     });
   } catch (err) {
