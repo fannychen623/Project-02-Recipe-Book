@@ -21,6 +21,6 @@ const favoriteRecipeHandler = async (event) => {
     }
   };
   
-  document
+document
   .querySelector('#blank-star')
   .addEventListener('click', favoriteRecipeHandler);

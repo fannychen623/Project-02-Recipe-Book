@@ -1,10 +1,10 @@
 <div class="card my-6">
     <div class="card-content">
-        <div class="media">
+        <div class="media m-2">
             <div class="media-left">
                 <figure class="image">            
-                    {{#if recipe_image}} <img src="{{recipe_image}}" alt="Recipe image" style="height: 300px; width: 400px; auto;">
-                    {{else}}<img src="/images/default_image.png" alt="Recipe image" style="height: 300px; width: 400px; auto;">
+                    {{#if recipe_image}} <img src="{{recipe_image}}" alt="Recipe image" style="object-fit: cover; height: 300px; width: 300px;">
+                    {{else}}<img src="/images/default_image.png" alt="Recipe image" style="object-fit: cover; height: 300px; width: 300px;">
                     {{/if}}
                 </figure>
             </div>
@@ -14,12 +14,12 @@
                 {{/if}}
                 <p class="title is-2 ml-6 pt-6">{{recipe_name}}</p></br>
                 <p class="title is-4 ml-6 pb-6">Recipe By: {{user.username}}</p>
-                <p class="title is-4 ml-6">Ingredients: {{ingredients}}</p>
+                <p class="title is-4 ml-6">Ingredients: <br>{{ingredients}}</p>
             </div>
         </div>
 
         <div class="content pb-6">
-            <p class="title is-4 my-6">Instructions: {{instructions}}</p>
+            <p class="title is-4 my-6">Instructions: <br>{{instructions}}</p>
         </div>
     </div>
 </div>

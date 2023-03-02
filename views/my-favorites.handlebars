@@ -12,16 +12,15 @@
                         <div class="card-image">
                             
                             <figure class="image">
-                                {{#if fav.recipe.recipe_image}}<img src="{{fav.recipe.recipe_image}}" alt="Placeholder image" style="height: 200px; width: auto;">
-                                {{else}}<img src="./images/default_image.png" alt="Placeholder image" style="height: 200px; width: auto;">
+                                {{#if fav.recipe.recipe_image}}<img src="{{fav.recipe.recipe_image}}" alt="Placeholder image" style="object-fit: cover; height: 200px; width: 200px;">
+                                {{else}}<img src="./images/default_image.png" alt="Placeholder image" style="object-fit: cover; height: 200px; width: 200px;">
                                 {{/if}}
-                                {{!-- <img src="https://bulma.io/images/placeholders/128x128.png" alt="Placeholder image" style="height: 200px; width: auto;"> --}}
                             </figure>
                         </div>
                     </div>
                     <div class="column">
                         <a class="title is-3 is-spaced" href="/api/recipes/{{fav.recipe.id}}">{{fav.recipe.recipe_name}}</a>
-                        <p class="subtitle is-5 mt-3">Popularity: {{fav.recipe.favorites.length}}<img src="./images/star.png" alt="Placeholder image" style="height: 20px; width: auto; margin-left: 5%;"></p>
+                        <p class="subtitle is-5 mt-3">Liked By: {{fav.recipe.favorites.length}} <img src="/images/follower.png" width="20"></p>
                         {{!-- <button type="submit" class="button has-text-weight-bold is-ghost mb-1 delete-favorite" id="delete-favorite">Remove</button> --}}
                     </div>
                 </div>

@@ -34,6 +34,7 @@ router.post("/", async (req, res) => {
     let instructions = completion.substring(
       completion.indexOf("Instructions:") + 13);
     instructions = instructions.trim();
+    instructions = instructions.replace(/\n\n/g, "\\n")
 
     return res.send({
       success: true,

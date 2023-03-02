@@ -1,0 +1,29 @@
+<div id="search-page">
+    <div class="field m-6 has-text-centered">
+        <p class="control search-bar">
+            <input class="input mr-2" type="text" placeholder="Search recipes" id="search-input">
+            <button class="button search-button">Search</button></a>
+        </p>
+    </div>
+    <div class="columns is-multiline mb-5">
+        {{#if recipes.length}}
+            {{#each recipes as |recipe|}}
+            <div class="column is-one-quarter" style="display: block; " id="{{recipe.id}}">
+                <div class="card p-4 has-text-centered">
+                    <div class="card-image mb-2">
+                        <figure class="image">
+                            {{#if recipe_image}}<img src="{{recipe_image}}" alt="Placeholder image" style="object-fit: cover; height: 250px; width: 250px;">
+                            {{else}}<img src="./images/default_image.png" alt="Placeholder image" style="object-fit: cover; height: 250px; width: 250px;">
+                            {{/if}}
+                        </figure>
+                    </div>
+                    <a class="title is-4 is-spaced" href="/api/recipes/{{recipe.id}}">{{recipe.recipe_name}}</a>
+                    <p class="subtitle is-6 mt-3">Liked By: {{recipe.favorites_count}} <img src="/images/follower.png" width="20"></p>
+                </div>
+            </div>
+            {{/each}}
+        {{/if}}
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
