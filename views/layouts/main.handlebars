@@ -13,10 +13,16 @@
 <body>
   <header class="p-5">
     <nav class="navbar has-text-weight-bold is-size-5" role="navigation" aria-label="main navigation">
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item has-text-white is-size-3" href="/">The Potluck</a>
-        </div>
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/"><img src="/images/logo.png"></a>
+      
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="potluckAndKitchen">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div id="potluckAndKitchen" class="navbar-menu">
         <div class="navbar-end">
           <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link has-text-white arrow-head">The Potluck</a>
@@ -54,6 +60,7 @@
     <p class="subtitle is-5 has-text-white">Special Thanks to the CU Boot Camp Team</p>
   </footer>
 
+  <script src="/js/main.js"></script>
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
   <script src="/js/logout.js"></script>

@@ -12,8 +12,9 @@ Recipe.init(
       autoIncrement: true,
     },
     recipe_name: {
-      type: DataTypes.STRING,
+      type: DataTypes.CHAR(30),
       allowNull: false,
+
     },
     recipe_image: {
       type: DataTypes.TEXT('long'),

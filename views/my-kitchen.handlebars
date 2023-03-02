@@ -1,7 +1,10 @@
 <div id="my-kitchen">
     <div class="field mt-5 my-kitchen-header">
         <p class="title is-2 my-6">{{username}}'s Recipes</p>
-        <button class="js-modal-trigger button has-text-weight-bold my-auto is-size-5 has-text-white" data-target="modal-new-recipe" id="new-recipe-toggle">Add New Recipe</button>
+        <div class="field mt-6 is-pulled-right">
+            <button class="js-modal-trigger button has-text-weight-bold my-auto is-size-5 has-text-white mr-2" data-target="modal-random-recipe" id="random-recipe-toggle">Risky Recipe</button>
+            <button class="js-modal-trigger button has-text-weight-bold my-auto is-size-5 has-text-white" data-target="modal-new-recipe" id="new-recipe-toggle">New Recipe</button>
+        </div>
     </div>
     <div class="columns is-multiline">
         {{#if recipes.length}}
@@ -18,7 +21,7 @@
                         </div>
                         <div class="column">
                             <a class="title is-3 is-spaced" href="/my-kitchen/{{recipe.id}}">{{recipe.recipe_name}}</a>
-                            <p class="subtitle is-5 mt-3">Popularity: xx<img src="./images/star.png" alt="Placeholder image" style="height: 20px; width: auto; margin-left: 5%;"></p>
+                            <p class="subtitle is-5 mt-3">Liked By: xx <img src="/images/follower.png" width="20"></p>
                             <button type="submit" class="button has-text-weight-bold is-ghost mb-1 delete-recipe" id="delete-recipe">Remove</button>
                         </div>
                     </div>
@@ -33,46 +36,98 @@
     <div class="modal-background"></div>
     <div class="modal-card">
         <div class="modal-card-head p-5">
-            <p class="modal-card-title has-text-white has-text-weight-bold">Create a new dish!</p>
+            <p class="modal-card-title has-text-white has-text-weight-bold">Create New Recipe!</p>
             <button class="delete" aria-label="close"></button>
         </div>
-        <section class="modal-card-body pb-5">
+        <section class="modal-card-body">
             <form class="form new-recipe-form">
-                <div class="field">
+                <div class="field pt-5 px-5">
                     <label class="label">Recipe Name</label>
                     <div class="control has-icons-left has-icons-right">
-                        <input class="input" type="text" id="recipe-name">
+                        <input class="input" type="text" id="recipe-name" placeholder="limit 30 characters...">
                         <span class="icon is-small is-left"><i class="fas fa-cutlery"></i></span>
                     </div>
                 </div>
-                <div class="field">
+                <div class="field px-5">
                     <label class="label">Ingredients</label>
                     <div class="control">
                         <textarea class="textarea" id="ingredient-list" placeholder="ingredient 1, ingredient 2, ..."></textarea>
                     </div>
                 </div>
-                <div class="field">
+                <div class="field px-5">
                     <label class="label">Instructions</label>
                     <div class="control">
                         <textarea class="textarea" id="instruction-list" placeholder="step 1, step 2, ..."></textarea>
                     </div>
                 </div>
-                <div class="file has-name mt-5">
+                <div class="file has-name px-5 pb-5">
                     <label class="file-label">
                         <label class="label mr-5 mt-2">Add a picture of your dish! (JPG/PNG)</label>
-                        <form class="box" method="post" action="" enctype="multipart/form-data">
-                    <div class="box__input">
-                         <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
-                         <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
-                         <button class="box__button" type="submit">Upload</button>
-                    </div>
-                    <div class="box__uploading">Uploading…</div>
-                <div class="box__success">Done!</div>
-                <div class="box__error">Error! <span></span>.</div>
+                        <input class="file-input" type="file" name="resume">
+                        <span class="file-cta">
+                            <span class="file-icon"><i class="fas fa-upload"></i></span>
+                            <span class="file-label">Choose a file…</span>
+                        </span>
+                        <span class="file-name"></span>
+                    </label>
+                </div>
                 </form>
-                <div class="field">
+                <div class="field p-5 new-recipe-buttons">
+                    <button class="button has-text-weight-bold close-modal">Close</button>
                     <button type="submit" class="button has-text-weight-bold" id="new-recipe">Add Recipe</button>
-                    <button class="button has-text-weight-bold">Close</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+<div id="modal-random-recipe" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <div class="modal-card-head p-5">
+            <p class="modal-card-title has-text-white has-text-weight-bold">Create Random Recipe!</p>
+            <button class="delete" aria-label="close"></button>
+        </div>
+        <div class="modal-card-subhead px-5 pb-5">
+            <p class="has-text-white has-text-weight-semibold">Have some left over ingredients in your fridge and not sure what to make? <br> Leave it to AI! Let's clear your fridge!</p>
+        </div>
+        <section class="modal-card-body">
+            <form class="form random-recipe-form">
+                <div class="field p-5">
+                    <label class="label">List the ingredients you want to include:</label>
+                    <div class="control">
+                        <textarea class="textarea" id="provided-ingredient-list" placeholder="ingredient 1, ingredient 2, ..."></textarea>
+                    </div>
+                </div>
+                <div class="field p-5 random-recipe-button">
+                    <button type="submit" class="button has-text-weight-bold" id="random-recipe">Give me a Recipe!</button>
+                    <br><img class="mt-5" id="loadingGIF" src="/images/coffee.gif" width="60" style="display: none; margin: auto">
+                </div>
+            </form>
+            <form class="form ai-recipe-form pt-5">
+                <div class="field px-5 pt-3">
+                    <label class="label">Recipe Ingredients:</label>
+                    <div class="control">
+                        <textarea class="textarea" id="random-ingredient-list" placeholder="AI says..."></textarea>
+                    </div>
+                </div>
+                <div class="field px-5 pt-3">
+                    <label class="label">Recipe Instructions:</label>
+                    <div class="control">
+                        <textarea class="textarea" id="random-instruction-list" placeholder="AI says..."></textarea>
+                    </div>
+                </div>
+                <div class="field py-5 px-5">
+                    <label class="label">Like the recipe? Give it a name and save it to your recipes!</label><br>
+                    <label class="label">Recipe Name</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" type="text" id="random-recipe-name" placeholder="limit 30 characters...">
+                        <span class="icon is-small is-left"><i class="fas fa-cutlery"></i></span>
+                    </div>
+                </div>
+                <div class="field p-5 ai-recipe-buttons">
+                    <button class="button has-text-weight-bold close-modal">Close</button>
+                    <button type="submit" class="button has-text-weight-bold" id="new-recipe">Add Recipe</button>
                 </div>
             </form>
         </section>
