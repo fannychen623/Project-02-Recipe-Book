@@ -32,6 +32,30 @@ router.get('/catalog', async (req, res) => {
   }
 });
 
+router.get('/search', async (req, res) => {
+  try {
+    // Get all projects and JOIN with user data
+    const recipeData = await Recipe.findAll({
+      include: [User, Favorite]
+    });
+
+    // Serialize data so the template can read it
+    const recipes = recipeData.map((recipe) => recipe.get({ plain: true }));
+    
+    for (let i = 0; i < recipes.length; i++) {
+      recipes[i].favorites_count = recipes[i].favorites.length;
+    }
+
+    // Pass serialized data and session flag into template
+    res.render('search', { 
+      recipes, 
+      logged_in: req.session.logged_in 
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/my-kitchen', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID

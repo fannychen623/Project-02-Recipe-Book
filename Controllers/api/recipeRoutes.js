@@ -18,7 +18,7 @@ router.post('/', withAuth, async (req, res) => {
 
 
 // display recipe
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
   try {
     const recipeData = await Recipe.findByPk(req.params.id, {
       include: [User, Favorite]
@@ -43,6 +43,39 @@ router.get('/:id', async (req, res) => {
       ...recipe,
       favorited,
       logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.post('/search', async (req, res) => {
+  try {
+    const recipeData = await Recipe.findAll({
+      // where: { 
+      //   recipe_name: {
+      //     [Op.like]: '%Beef%'
+      //   }
+      // },
+      include: [User, Favorite]
+    });
+
+    // Serialize data so the template can read it
+    const allRecipes = recipeData.map((recipe) => recipe.get({ plain: true }));
+    const recipes = allRecipes.reduce(function(filtered, recipe) {
+      if (recipe.recipe_name.toLowerCase().indexOf(req.body.searchInput.toLowerCase()) >= 0) {
+         filtered.push(recipe);
+      }
+      return filtered;
+    }, []);
+
+    const recipeIds = [];
+    for (let i = 0; i < recipes.length; i++) {
+      recipeIds.push(recipes[i].id);
+    }
+    console.log(recipeIds)
+    res.send({ 
+      recipeIds, 
     });
   } catch (err) {
     res.status(500).json(err);

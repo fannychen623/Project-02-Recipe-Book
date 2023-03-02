@@ -15,9 +15,13 @@
                         <div class="column is-5">
                             <div class="card-image">
                                 <figure class="image">
-                                    {{#if recipe_image}}<img src="{{recipe_image}}" alt="Placeholder image" style="height: 200px; width: auto;">
-                                    {{else}}<img src="./images/default_image.png" alt="Placeholder image" style="height: 200px; width: auto;">
+                                    <a href="/api/recipes/{{recipe.id}}">
+                                    {{#if recipe_image}}
+                                        <img src="{{recipe_image}}" alt="Placeholder image" style="object-fit: cover; height: 200px; width: 200px;">
+                                    {{else}}
+                                        <img src="./images/default_image.png" alt="Placeholder image" style="object-fit: cover; height: 200px; width: 200px;">
                                     {{/if}}
+                                    </a>
                                 </figure>
                             </div>
                         </div>
@@ -46,25 +50,37 @@
                 <div class="field pt-5 px-5">
                     <label class="label">Recipe Name</label>
                     <div class="control has-icons-left has-icons-right">
-                        <input class="input" type="text" id="recipe-name" placeholder="limit 30 characters...">
+                        <input class="input" type="text" id="recipe-name" placeholder="Limit 30 Characters...">
                         <span class="icon is-small is-left"><i class="fas fa-cutlery"></i></span>
                     </div>
                 </div>
                 <div class="field px-5">
                     <label class="label">Ingredients</label>
                     <div class="control">
-                        <textarea class="textarea" id="ingredient-list" placeholder="ingredient 1, ingredient 2, ..."></textarea>
+                        <textarea class="textarea" id="ingredient-list" placeholder="1 Carrot&#10;1/2 Onion&#10;2 Cloves of Garlic&#10;1 Red Pepp..."></textarea>
                     </div>
                 </div>
                 <div class="field px-5">
                     <label class="label">Instructions</label>
                     <div class="control">
-                        <textarea class="textarea" id="instruction-list" placeholder="step 1, step 2, ..."></textarea>
+                        <textarea class="textarea" id="instruction-list" placeholder="1. Peel..&#10;2. Mix..&#10;3. Cook...&#10;4. Serv..."></textarea>
                     </div>
                 </div>
-                <div class="image-upload-div">
-                    <label for="img">Select image:</label>
-                    <input type="file" id="img-upload" name="img" accept="image/*">
+                <div id="file-input" class="file has-name px-5 my-5">
+                    <label class="file-label">
+                        <input class="file-input" type="file" name="img" id="img-upload">
+                        <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                                Choose a file…
+                            </span>
+                        </span>
+                        <span class="file-name has-text-white">
+                            No file uploaded
+                        </span>
+                    </label>
                 </div>
                 <div class="field p-5 new-recipe-buttons">
                     <button class="button has-text-weight-bold close-modal">Close</button>

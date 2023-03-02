@@ -76,7 +76,9 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   color: var(--brown5);
   cursor: url("../images/nextpage.png") 35 10, auto;
   position: absolute;
-  bottom: 10%;
+  padding-top: 25%;
+  padding-bottom: 30%;
+  top: 10%;
   right: -7%;
 }
 
@@ -185,7 +187,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   padding-bottom: 10%;
 }
 
-#my-kitchen .card, #my-favorites .card {
+#my-kitchen .card, #my-favorites .card, #search-page .card {
   background-color: var(--brown2);
 }
 
@@ -221,7 +223,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   cursor: pointer;
 }
 
-#catalog_image {
+#catalog-image {
   object-fit: cover;
   width: 300px;
   height: 300px;
@@ -231,4 +233,8 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   background-color: var(--brown3);
   width: 100%;
   text-align: center;
+}
+
+.search-bar input {
+  width: 60%;
 }
