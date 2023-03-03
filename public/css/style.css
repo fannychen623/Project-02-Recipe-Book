@@ -211,6 +211,13 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   left: 245px;
 }
 
+#modify-recipe2 {
+  color: var(--brown5);
+  position: absolute;
+  top: 0;
+  right: 75px;
+}
+
 .box {
   height: 50px; 
   width: 50px;
