@@ -32,6 +32,7 @@
                         <span class="icon is-small is-left"><i class="fas fa-cutlery"></i></span>
                     </div>
                 </div>
+                <input type="hidden" value="{{id}}" id="recipe-id"></input>
                 <p class="title is-4 ml-6 pb-5">Recipe By: {{user.username}}</p>
                 <p class="title is-4 ml-6 pb-6">Liked by: {{favorites.length}} <img src="/images/follower.png" width="20"></p>
             </div>
@@ -42,7 +43,7 @@
                     <p class="title is-4" style="white-space: pre-line">Ingredients:<br><br></p>
                     <div class="field px-5">
                         <div class="control">
-                            <textarea class="textarea" id="ingredient-list" value={{ingredients}}></textarea>
+                            <textarea class="textarea" id="ingredient-list">{{ingredients}}</textarea>
                         </div>
                     </div>
                 </div>
@@ -50,7 +51,7 @@
                     <p class="title is-4" style="white-space: pre-line">Instructions:<br><br></p>
                     <div class="field px-5">
                         <div class="control">
-                            <textarea class="textarea" id="instruction-list" value={{instructions}}></textarea>
+                            <textarea class="textarea" id="instruction-list">{{instructions}}</textarea>
                         </div>
                     </div>
                 </div>
