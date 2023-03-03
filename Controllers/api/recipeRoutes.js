@@ -73,7 +73,7 @@ router.post('/search', async (req, res) => {
     for (let i = 0; i < recipes.length; i++) {
       recipeIds.push(recipes[i].id);
     }
-    console.log(recipeIds)
+
     res.send({ 
       recipeIds, 
     });
