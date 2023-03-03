@@ -16,6 +16,29 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+// update recipe
+router.put('/:id', withAuth, async (req, res) => {
+  try {
+    const recipe = await Recipe.update(
+      {
+        recipe_name: req.body.recipe_name,
+        recipe_image: req.body.recipe_image,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+
+    res.status(200).json(recipe);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 
 // display recipe
 router.get('/:id', withAuth, async (req, res) => {
@@ -48,6 +71,28 @@ router.get('/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
+// modify recipe
+router.get('/modify/:id', withAuth, async (req, res) => {
+  try {
+    const recipeData = await Recipe.findByPk(req.params.id, {
+      include: [User, Favorite]
+    });
+
+    const recipe = recipeData.get({ plain: true });
+
+    // const isAuthor = (recipe.user.id == req.session.user_id)
+
+    res.render('modify', {
+      ...recipe,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 router.post('/search', async (req, res) => {
   try {
