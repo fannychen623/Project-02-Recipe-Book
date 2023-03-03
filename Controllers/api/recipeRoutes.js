@@ -60,11 +60,12 @@ router.get('/:id', withAuth, async (req, res) => {
     
     let favorited = favs.length > 0 ? true : false
 
-    // const isAuthor = (recipe.user.id == req.session.user_id)
+    const isAuthor = (recipe.user.id == req.session.user_id)
 
     res.render('recipe', {
       ...recipe,
       favorited,
+      isAuthor,
       logged_in: req.session.logged_in
     });
   } catch (err) {
