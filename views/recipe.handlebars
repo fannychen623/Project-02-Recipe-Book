@@ -1,6 +1,6 @@
 <div class="card my-6">
     <div class="card-content">
-        {{!-- <a href="/api/recipes/modify/{{recipe.id}}"><button type="submit" class="button subtitle has-text-weight-bold is-ghost mt-5 modify-recipe" id="modify-dish">Modify</button></a> --}}
+        {{#if isAuthor}}<a href="/api/recipes/modify/{{id}}"><button type="submit" class="button subtitle has-text-weight-bold is-ghost mt-5 modify-recipe" id="modify-recipe2">Modify</button></a>{{/if}}
         <div class="media m-2">
             <div class="media-left">
                 <figure class="image">            
