@@ -20,11 +20,11 @@ Recipe.init(
       type: DataTypes.TEXT('long'),
     },
     ingredients: {
-      type: DataTypes.TEXT('medium'),
+      type: DataTypes.TEXT('long'),
       allowNull: false,
     },
     instructions: {
-      type: DataTypes.TEXT('medium'),
+      type: DataTypes.TEXT('long'),
       allowNull: false,
     },
     user_id: {

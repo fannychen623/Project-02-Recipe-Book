@@ -20,7 +20,37 @@ const userData = [
     username: "Steven",
     email: "steven1@email.com",
     password: "testing012"
-  }
+  },
+  {
+    username: "AB",
+    email: "ab@email.com",
+    password: "password123"
+  },
+  {
+    username: "Gavin",
+    email: "gavin@email.com",
+    password: "password123"
+  },
+  {
+    username: "Fanny",
+    email: "fanny@email.com",
+    password: "password123"
+  },
+  {
+    username: "Benji",
+    email: "benji@email.com",
+    password: "password123"
+  },
+  {
+    username: "Vanessa",
+    email: "vanessa@email.com",
+    password: "password123"
+  },
+  {
+    username: "Charlie",
+    email: "charlie@email.com",
+    password: "password123"
+  },
 ];
 
 const seedCategories = () => User.bulkCreate(userData, {
