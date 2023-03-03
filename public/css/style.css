@@ -252,3 +252,10 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
 .search-bar input {
   width: 60%;
 }
+
+#modify-dish {
+  color: var(--brown5);
+  position: absolute;
+  top: 0;
+  right: 75px;
+}
