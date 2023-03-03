@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
       presence_penalty: 0.0,
     });
     const completion = response.data.choices[0].text;
-    console.log(completion);
+   
     let title = completion.substring(2, completion.indexOf("Ingredients:") - 2);
     let ingredients = completion.substring(
       completion.indexOf("Ingredients:") + 12, 
