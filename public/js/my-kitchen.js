@@ -137,23 +137,21 @@ const newRecipeHandler = async (event) => {
   const instructions = document.querySelector('#instruction-list').value.trim();
   const recipe_image = image_upload;
 
-  console.log({ingredients})
-  console.log({instructions})
-  // if (recipe_name && ingredients && instructions) {
-  //   const response = await fetch(`/api/recipes`, {
-  //     method: 'POST',
-  //     body: JSON.stringify({ recipe_name, ingredients, instructions, recipe_image }),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
+  if (recipe_name && ingredients && instructions) {
+    const response = await fetch(`/api/recipes`, {
+      method: 'POST',
+      body: JSON.stringify({ recipe_name, ingredients, instructions, recipe_image }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
-  //   if (response.ok) {
-  //     document.location.replace('/my-kitchen');
-  //   } else {
-  //     alert('Failed to create recipe');
-  //   }
-  // }
+    if (response.ok) {
+      document.location.replace('/my-kitchen');
+    } else {
+      alert('Failed to create recipe');
+    }
+  }
 };
 
 const delButtonHandler = async (event) => {
