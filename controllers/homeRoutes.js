@@ -71,6 +71,7 @@ router.get('/my-kitchen', withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
 
+    // favorites counts
     for (let i = 0; i < user.recipes.length; i++) {
       user.recipes[i].favorites_count = user.recipes[i].favorites.length;
     }

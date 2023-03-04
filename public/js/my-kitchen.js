@@ -77,6 +77,7 @@ ingredientList.onkeypress = () => {
   }
 }
 
+// handle random
 const randomRecipeHandler = async (event) => {
   event.preventDefault();
 
@@ -105,6 +106,7 @@ const randomRecipeHandler = async (event) => {
   }
 };
 
+// handle add random
 const addRandomRecipeHandler = async (event) => {
   event.preventDefault();
 
@@ -129,6 +131,7 @@ const addRandomRecipeHandler = async (event) => {
   }
 };
 
+// handle create
 const newRecipeHandler = async (event) => {
   event.preventDefault();
 
@@ -154,6 +157,7 @@ const newRecipeHandler = async (event) => {
   }
 };
 
+// handle delete
 const delButtonHandler = async (event) => {
 
   if (event.target.hasAttribute('data-id')) {
@@ -171,6 +175,7 @@ const delButtonHandler = async (event) => {
   }
 };
 
+// image input handler
 let image_upload;
 function readFile() {
   if (!this.files || !this.files[0]) return;
@@ -183,6 +188,7 @@ function readFile() {
   FR.readAsDataURL(this.files[0]);
 }
 
+// query selectors
 let recipes = document.querySelectorAll('.delete-recipe')
 recipes.forEach((recipe) => {
   recipe.addEventListener('click', delButtonHandler)

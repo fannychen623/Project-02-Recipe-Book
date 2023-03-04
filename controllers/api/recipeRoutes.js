@@ -52,6 +52,7 @@ router.get('/:id', async (req, res) => {
     let favorited;
     let isAuthor;
 
+    // display favoroting if logged in
     if(req.session.logged_in){
       const favsData = await Favorite.findAll({ 
         where: { 
@@ -64,6 +65,7 @@ router.get('/:id', async (req, res) => {
       
       favorited = favs.length > 0 ? true : false
 
+      // allow editing if author
       isAuthor = (recipe.user.id == req.session.user_id)
     }
 
@@ -99,7 +101,7 @@ router.get('/modify/:id', withAuth, async (req, res) => {
   }
 });
 
-
+// search function
 router.post('/search', async (req, res) => {
   try {
     const recipeData = await Recipe.findAll({
@@ -133,6 +135,7 @@ router.post('/search', async (req, res) => {
   }
 });
 
+// delete item
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     const recipeData = await Recipe.destroy({
