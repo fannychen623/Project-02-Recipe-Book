@@ -10,8 +10,11 @@
                 </figure>
             </div>
             <div class="media-content">
-                {{#if favorited}} <div class="box" id="favorite-star" data-id="{{id}}" style="background-image: url('/images/filledstar.png')"></div>  
-                {{else}} <div class="box" id="blank-star" data-id="{{id}}" style="background-image: url('/images/unfilledstar.png')"></div>  
+                {{#if logged_in}}
+                    {{#if favorited}} <div class="box" id="favorite-star" data-id="{{id}}" style="background-image: url('/images/filledstar.png')"></div>  
+                    {{else}} <div class="box" id="blank-star" data-id="{{id}}" style="background-image: url('/images/unfilledstar.png')"></div>  
+                    {{/if}}
+                {{else}} <a href="/login"><div class="recipe-login-cta">Log in to favorite!</div></a>
                 {{/if}}
                 <p class="title is-2 ml-6 pt-6">{{recipe_name}}</p></br>
                 <p class="title is-4 ml-6 pb-5">Recipe By: {{user.username}}</p>

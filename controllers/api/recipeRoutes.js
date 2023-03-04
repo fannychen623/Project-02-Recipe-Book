@@ -41,26 +41,31 @@ router.put('/:id', withAuth, async (req, res) => {
 
 
 // display recipe
-router.get('/:id', withAuth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const recipeData = await Recipe.findByPk(req.params.id, {
       include: [User, Favorite]
     });
 
     const recipe = recipeData.get({ plain: true });
-
-    const favsData = await Favorite.findAll({ 
-      where: { 
-        user_id: req.session.user_id,
-        recipe_id: recipe.id,
-      },
-    });
-
-    const favs = favsData.map((fav) => fav.get({ plain: true }));
     
-    let favorited = favs.length > 0 ? true : false
+    let favorited;
+    let isAuthor;
 
-    const isAuthor = (recipe.user.id == req.session.user_id)
+    if(req.session.logged_in){
+      const favsData = await Favorite.findAll({ 
+        where: { 
+          user_id: req.session.user_id,
+          recipe_id: recipe.id,
+        },
+      });
+
+      const favs = favsData.map((fav) => fav.get({ plain: true }));
+      
+      favorited = favs.length > 0 ? true : false
+
+      isAuthor = (recipe.user.id == req.session.user_id)
+    }
 
     res.render('recipe', {
       ...recipe,

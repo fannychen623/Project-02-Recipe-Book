@@ -259,3 +259,8 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   top: 0;
   right: 75px;
 }
+
+.recipe-login-cta {
+ text-align: right;
+ font-size: large; 
+}
