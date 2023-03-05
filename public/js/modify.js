@@ -7,36 +7,31 @@ fileInput.onchange = () => {
 }
 
 const updateRecipeHandler = async (event) => {
-    event.preventDefault();
-  
-    const recipe_name = document.querySelector('#recipe-name').value.trim();
-    const ingredients = document.querySelector('#ingredient-list').value.trim();
-    const instructions = document.querySelector('#instruction-list').value.trim();
-    const recipe_image = image_upload;
+  event.preventDefault();
 
-    const id = document.querySelector('#recipe-id').value.trim();
+  const recipe_name = document.querySelector('#recipe-name').value.trim();
+  const ingredients = document.querySelector('#ingredient-list').value.trim();
+  const instructions = document.querySelector('#instruction-list').value.trim();
+  const recipe_image = image_upload;
 
-    if (recipe_name && ingredients && instructions) {
-      const response = await fetch(`/api/recipes/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({ recipe_name, ingredients, instructions, recipe_image }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      if (response.ok) {
-        document.location.replace('/my-kitchen');
-      } else {
-        alert('Failed to create recipe');
-      }
+  const id = document.querySelector('#recipe-id').value.trim();
+
+  if (recipe_name && ingredients && instructions) {
+    const response = await fetch(`/api/recipes/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ recipe_name, ingredients, instructions, recipe_image }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      document.location.replace('/my-kitchen');
+    } else {
+      alert('Failed to create recipe');
     }
-  };
-
-  document
-  .querySelector('#update-recipe')
-  .addEventListener('click', updateRecipeHandler);
-
+  }
+};
 
 let image_upload;
 function readFile() {
@@ -49,6 +44,10 @@ function readFile() {
     
   FR.readAsDataURL(this.files[0]);
 }
+
+document
+.querySelector('#update-recipe')
+.addEventListener('click', updateRecipeHandler);
 
 document
   .querySelector("#img-upload")

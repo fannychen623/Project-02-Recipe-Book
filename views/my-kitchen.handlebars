@@ -58,13 +58,13 @@
                 <div class="field px-5">
                     <label class="label">Ingredients</label>
                     <div class="control">
-                        <textarea class="textarea" id="ingredient-list" placeholder="1 Carrot&#10;1/2 Onion&#10;2 Cloves of Garlic&#10;1 Red Pepp..."></textarea>
+                        <textarea class="textarea" rows="8" id="ingredient-list" placeholder="1 Carrot&#10;&#10;1/2 Onion&#10;&#10;2 Cloves of Garlic&#10;&#10;1 Red Pepp..."></textarea>
                     </div>
                 </div>
                 <div class="field px-5">
                     <label class="label">Instructions</label>
                     <div class="control">
-                        <textarea class="textarea" id="instruction-list" placeholder="1. Peel..&#10;2. Mix..&#10;3. Cook...&#10;4. Serv..."></textarea>
+                        <textarea class="textarea" rows="10" id="instruction-list" placeholder="1. Peel..&#10;&#10;2. Mix..&#10;&#10;3. Cook...&#10;&#10;4. Garnish...&#10;&#10;5. Serv..."></textarea>
                     </div>
                 </div>
                 <div id="file-input" class="file has-name px-5 my-5">
@@ -82,6 +82,22 @@
                             No file uploaded
                         </span>
                     </label>
+                    <button class="button has-text-weight-bold ml-6" id="recipe-icons">Default Images</button>
+                </div>
+                <div class="p-5" id="default-icons">
+                    <p class="label pb-3">Don't have a picture of your recipe? Select a default image!</p>
+                    <img class="icon-image" src="./images/icon1.png" alt="Icon 1">
+                    <img class="icon-image" src="./images/icon2.png" alt="Icon 2">
+                    <img class="icon-image" src="./images/icon3.png" alt="Icon 3">
+                    <img class="icon-image" src="./images/icon4.png" alt="Icon 4">
+                    <img class="icon-image" src="./images/icon5.png" alt="Icon 5">
+                    <img class="icon-image" src="./images/icon6.png" alt="Icon 6">
+                    <img class="icon-image" src="./images/icon7.png" alt="Icon 7">
+                    <img class="icon-image" src="./images/icon8.png" alt="Icon 8">
+                    <img class="icon-image" src="./images/icon9.png" alt="Icon 9">
+                    <img class="icon-image" src="./images/icon10.png" alt="Icon 10">
+                    <img class="icon-image" src="./images/icon11.png" alt="Icon 11">
+                    <img class="icon-image" src="./images/icon12.png" alt="Icon 12">
                 </div>
                 <div class="field p-5 new-recipe-buttons">
                     <button class="button has-text-weight-bold close-modal">Close</button>
@@ -110,12 +126,13 @@
                         <textarea class="textarea" id="provided-ingredient-list" placeholder="ingredient 1, ingredient 2, ..."></textarea>
                     </div>
                 </div>
-                <div class="field p-5 random-recipe-button">
+                <div class="field pt-5 random-recipe-button">
                     <button type="submit" class="button has-text-weight-bold" id="random-recipe">Give me a Recipe!</button>
                     <br><img class="mt-5" id="loadingGIF" src="/images/coffee.gif" width="60" style="display: none; margin: auto">
+                    <br><p class="pb-5 is-size-4 has-text-white has-text-weight-bold" id="AiMessage" style="display: none; margin: auto">The AI Chef has Spoken! <i class="fa fa-coffee" aria-hidden="true"></i></p>
                 </div>
             </form>
-            <form class="form ai-recipe-form pt-5">
+            <form class="form ai-recipe-form pt-3">
                 <div class="field px-5 pt-3">
                     <label class="label">Recipe Ingredients:</label>
                     <div class="control">

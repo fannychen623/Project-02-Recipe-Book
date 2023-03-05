@@ -45,14 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const fileInput = document.querySelector('#file-input input[type=file]');
 fileInput.onchange = () => {
+  document.querySelectorAll('.icon-image').forEach(function(el) {
+    el.style.border = "1px solid var(--brown4)";
+  });
   if (fileInput.files.length > 0) {
     const fileName = document.querySelector('#file-input .file-name');
     fileName.textContent = fileInput.files[0].name;
   }
 }
 
-const ingredientList = document.querySelector('#instruction-list');
-ingredientList.onclick = () => {
+const instructionList = document.querySelector('#instruction-list');
+instructionList.onclick = () => {
   var text = document.querySelector('#instruction-list').value;   
   if (text.length == 0 ) {
       document.getElementById("instruction-list").value = "1. ";
@@ -62,20 +65,44 @@ ingredientList.onclick = () => {
       return true;
   }
 }
-ingredientList.onkeypress = () => {
+
+instructionList.onkeypress = () => {
   var text = document.querySelector('#instruction-list').value;   
-  var lines = text.split("\n");
+  var lines = text.split("\n\n");
   var count = lines.length + 1;
   let key = window.event.keyCode;
   // If the user has pressed enter
   if (key === 13) {
-      document.getElementById("instruction-list").value = document.getElementById("instruction-list").value + "\n" + count + ". ";
+      document.getElementById("instruction-list").value = document.getElementById("instruction-list").value + "\n\n" + count + ". ";
       return false;
   }
   else {
       return true;
   }
 }
+
+const ingredientList = document.querySelector('#ingredient-list');
+ingredientList.onkeypress = () => {
+  let key = window.event.keyCode;
+  // If the user has pressed enter
+  if (key === 13) {
+      document.getElementById("ingredient-list").value = document.getElementById("ingredient-list").value + "\n\n";
+      return false;
+  }
+  else {
+      return true;
+  }
+}
+
+const recipeIconHandler = async (event) => {
+  event.preventDefault();
+  if (document.getElementById("default-icons").style.display === "block") {
+    document.getElementById("default-icons").style.display = "none";
+  } else {
+    document.getElementById("default-icons").style.display = "block" ;
+  };
+};
+
 
 // handle random
 const randomRecipeHandler = async (event) => {
@@ -95,12 +122,14 @@ const randomRecipeHandler = async (event) => {
   const aiResponse = await response.json().then(data => (
     document.querySelector('#loadingGIF').style.display= "none",
     document.querySelector('#random-recipe-name').value = data.title,
+    data.ingredients = data.ingredients.replace(/\n/g,"\n\n"),
+    data.instructions = data.instructions.replace(/\n/g,"\n\n"),
     document.querySelector('#random-ingredient-list').textContent = data.ingredients,
     document.querySelector('#random-instruction-list').textContent = data.instructions
   ));
 
   if (response.ok) {
-    alert('The AI Chef has spoken!');
+    document.querySelector('#AiMessage').style.display= "block";
   } else {
     alert('Failed to create recipe');
   }
@@ -175,16 +204,39 @@ const delButtonHandler = async (event) => {
   }
 };
 
+const addIconHandler = async (event) => {
+  document.querySelectorAll('.icon-image').forEach(function(el) {
+    el.style.border = "1px solid var(--brown4)";
+  });
+  event.target.style.border = "5px solid var(--brown5)";
+  let source = event.target.getAttribute('src');
+  let imgName = /[^/]*$/.exec(source)[0];
+  document.querySelector('#file-input .file-name').textContent = imgName
+  let defaultFileImage = null
+  fetch(source)
+  .then(res => res.blob())
+  .then(blob => {
+    defaultFileImage = new File([blob], imgName, blob)
+    document.getElementById("file-input").files = defaultFileImage
+    console.log(defaultFileImage)
+    const FR = new FileReader();
+    FR.onload = (function(defaultFileImage){
+        return function(evt){
+            image_upload = evt.target.result;
+        };
+    })(defaultFileImage);   
+    FR.readAsDataURL(defaultFileImage);
+  });
+};
+
 // image input handler
 let image_upload;
 function readFile() {
   if (!this.files || !this.files[0]) return;
   const FR = new FileReader();
   FR.addEventListener("load", function(evt) {
-    // console.log(evt.target.result)
     image_upload = evt.target.result;
   }); 
-    
   FR.readAsDataURL(this.files[0]);
 }
 
@@ -192,6 +244,11 @@ function readFile() {
 let recipes = document.querySelectorAll('.delete-recipe')
 recipes.forEach((recipe) => {
   recipe.addEventListener('click', delButtonHandler)
+})
+
+let icons = document.querySelectorAll('.icon-image')
+icons.forEach((icon) => {
+  icon.addEventListener('click', addIconHandler)
 })
 
 document
@@ -205,6 +262,10 @@ document
 document
   .querySelector('#new-recipe')
   .addEventListener('click', newRecipeHandler);
+
+document
+  .querySelector('#recipe-icons')
+  .addEventListener('click', recipeIconHandler);
 
 document
   .querySelector("#img-upload")

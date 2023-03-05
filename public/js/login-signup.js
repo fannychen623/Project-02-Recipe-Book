@@ -15,13 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Add a click event on buttons to open a specific modal
-  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-    const modal = $trigger.dataset.target;
-    const $target = document.getElementById(modal);
-
-    $trigger.addEventListener('click', () => {
-      openModal($target);
-    });
+  document.querySelector('.js-modal-trigger').addEventListener('click', () => {
+    openModal(document.getElementById(modal));
   });
 
   // Add a click event on various child elements to close the parent modal
@@ -41,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       closeAllModals();
     }
   });
+  
 });
 
 const loginFormHandler = async (event) => {
@@ -56,11 +52,10 @@ const loginFormHandler = async (event) => {
       body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
-
+    
     if (response.ok) {
       document.location.replace('/my-kitchen');
     } else {
-      // alert(response.statusText);
       alert("Error: Account not found. \n Sign up or try again.");
     }
   }
@@ -74,7 +69,7 @@ const signupFormHandler = async (event) => {
   const password = document.querySelector('#password-signup').value.trim();
 
   if (email && username && password) {
-    const response = await fetch('/api/users/', {
+    const response = await fetch('/api/users/signup', {
       method: 'POST',
       body: JSON.stringify({ email, username, password }),
       headers: { 'Content-Type': 'application/json' },
@@ -89,9 +84,15 @@ const signupFormHandler = async (event) => {
 };
 
 document
-  .querySelector('.login-form')
-  .addEventListener('submit', loginFormHandler);
+  .querySelector('#login')
+  .addEventListener('click', loginFormHandler);
 
 document
   .querySelector('#signup')
   .addEventListener('click', signupFormHandler);
+
+  document.getElementById('password-login').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      loginFormHandler(e);
+    }
+});
