@@ -64,6 +64,10 @@ const loginFormHandler = async (event) => {
       headers: { 'Content-Type': 'application/json' },
     });
     
+    const loggedIn = await response.json().then(data => (
+      document.location.replace('/my-kitchen')
+    ));
+
     if (response.ok) {
       document.location.replace('/my-kitchen');
     } else {
