@@ -4,10 +4,10 @@
             <div class="media-left">
                 <figure class="image">            
                     {{#if recipe_image}} <img src="{{recipe_image}}" alt="Recipe image" style="object-fit: cover; height: 300px; width: 300px;">
-                    {{else}}<img src="/images/default_image.png" alt="Recipe image" style="object-fit: cover; height: 300px; width: 300px;">
+                    {{else}}<img src="/images/default_image.png" alt="Recipe image" id="default-image" style="object-fit: cover; height: 300px; width: 300px;">
                     {{/if}}
                 </figure>
-                <div id="file-input" class="file has-name px-5 my-5">
+                <div id="file-input" class="file has-name my-5">
                     <label class="file-label">
                         <input class="file-input" type="file" name="img" id="img-upload">
                         <span class="file-cta">
@@ -24,43 +24,43 @@
                     </label>
                 </div>
             </div>
-            <div class="media-content">
-                <div class="field pt-5 px-5">
-                    <label class="label">Recipe Name</label>
+            <div class="media-content ml-6">
+                <div class="field pt-5 pb-5">
+                    <label class="label is-size-4">Recipe Name</label>
                     <div class="control has-icons-left has-icons-right">
                         <input class="input" type="text" id="recipe-name" value={{recipe_name}}>
                         <span class="icon is-small is-left"><i class="fas fa-cutlery"></i></span>
                     </div>
                 </div>
                 <input type="hidden" value="{{id}}" id="recipe-id"></input>
-                <p class="title is-4 ml-6 pb-5">Recipe By: {{user.username}}</p>
-                <p class="title is-4 ml-6 pb-6">Liked by: {{favorites.length}} <img src="/images/follower.png" width="20"></p>
+                <p class="title is-4 pb-5">Recipe By: {{user.username}}</p>
+                <p class="title is-4 pb-6">Liked by: {{favorites.length}} <img src="/images/follower.png" width="20"></p>
             </div>
         </div>
         <div class="content pt-5 m-2">
             <div class="columns">
                 <div class="column is-4">
-                    <p class="title is-4" style="white-space: pre-line">Ingredients:<br><br></p>
-                    <div class="field px-5">
+                    <p class="title is-4" style="white-space: pre-line">Ingredients:<br></p>
+                    <div class="field">
                         <div class="control">
-                            <textarea class="textarea" id="ingredient-list">{{ingredients}}</textarea>
+                            <textarea class="textarea" id="ingredient-list" rows="15">{{ingredients}}</textarea>
                         </div>
                     </div>
                 </div>
                 <div class="column">
-                    <p class="title is-4" style="white-space: pre-line">Instructions:<br><br></p>
-                    <div class="field px-5">
+                    <p class="title is-4" style="white-space: pre-line">Instructions:<br></p>
+                    <div class="field">
                         <div class="control">
-                            <textarea class="textarea" id="instruction-list">{{instructions}}</textarea>
+                            <textarea class="textarea" id="instruction-list" rows="15">{{instructions}}</textarea>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="field p-5 modify-recipe-buttons">
-            <a href="/my-kitchen"><button class="button has-text-weight-bold">Cancel</button></a>
-            <button type="submit" class="button has-text-weight-bold" id="update-recipe">Update Recipe</button>
-        </div>
+    </div>
+    <div class="field px-6 py-5 modify-recipe-buttons">
+        <a href="/my-kitchen"><button class="button has-text-weight-bold">Cancel</button></a>
+        <button type="submit" class="button has-text-weight-bold" id="update-recipe">Update Recipe</button>
     </div>
 </div>
 

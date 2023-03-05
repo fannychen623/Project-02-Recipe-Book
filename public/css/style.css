@@ -130,6 +130,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
 .pagination-link {
   color: var(--brown5);
   border-color: var(--brown5);
+  pointer-events: none;
 }
 
 .pagination-ellipsis {
@@ -150,12 +151,12 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   border: none;
 }
 
-.login-buttons {
+.login-buttons, .my-kitchen-header, #file-input {
   display: flex;
   justify-content: space-between;
 }
 
-#login, #signup, #new-recipe, #random-recipe {
+#login, #signup, #new-recipe, #random-recipe, #update-recipe {
   cursor: url("../images/bowl.png") 40 40, auto;
   border: none;
 }
@@ -164,7 +165,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   color: var(--brown5);
   background-color: var(--trans);
   border: none;
-  /* cursor: alias; */
+  cursor: alias;
 }
 
 .modal-card-body {
@@ -172,14 +173,14 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   padding:0;
 }
 
-.signup-buttons, .new-recipe-buttons, .ai-recipe-buttons {
+.signup-buttons, .new-recipe-buttons, .ai-recipe-buttons, .modify-recipe-buttons {
   display: flex;
   justify-content: space-between;
   background-color: var(--brown3);
   border: none;
 }
 
-.modal .label, .field button, #my-kitchen .title, #my-kitchen .subtitle, #my-favorites .title, #my-favorites .subtitle {
+.modal .label, .field button, #my-kitchen .title, #my-kitchen .subtitle, #my-favorites .title, #my-favorites .subtitle, #recipe-icons {
   color: var(--brown5);
 }
 
@@ -189,11 +190,6 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
 
 #my-kitchen .card, #my-favorites .card, #search-page .card {
   background-color: var(--brown2);
-}
-
-.my-kitchen-header {
-  display: flex;
-  justify-content: space-between;
 }
 
 #delete-recipe, #delete-favorite {
@@ -222,7 +218,6 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   height: 50px; 
   width: 50px;
   background-color: var(--trans);
-  /* background-image: url("../images/unfilledstar.png"); */
   background-repeat: no-repeat;
   background-size: 50px;
   box-shadow: none;
@@ -233,7 +228,6 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
 }
 
 .box:hover {
-  /* background-image: url("../images/filledstar.png"); */
   cursor: pointer;
 }
 
@@ -263,4 +257,16 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
 .recipe-login-cta {
  text-align: right;
  font-size: large; 
+}
+
+.icon-image {
+  height: 85px;
+  padding: 10px;
+  margin-right: 6px;
+  border: 1px solid var(--brown4);
+}
+
+#default-icons {
+  display: none;
+  border-top: 5px solid var(--brown4);
 }
