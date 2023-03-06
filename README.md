@@ -1,25 +1,17 @@
-# ReadMe - Module 14 Challenge 📝
+# Project 2 - Recipe Blog: Share-A-Byte
 
-## Description 
+**Application Link:** [Share-A-Byte](https://share-a-byte.herokuapp.com/)
+>**Note**: When creating an account, must have unique email and password must be at least 8 characters in length.
 
- This app is CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well.  It allows users to login or sign up, view posts, manage their own posts via a dashboard, and create and view comments.  Bonus functionalities include comment count, comment deletion, paragraph text, homepage/dashboard post truncation, and post sorting.
- 
- The app is built using node.js, express, sequilize, and handlebars.  It uses a MVC structure, with API endpoints for all relevant CRUD operations, and is deployed live to Heroku.
+**View:** [Table of Content](#table-of-content) / [Creator Notes](#creator-notes) / [Application Pages Preview](#application-pages-preview)
 
-View more info below, as well as links to the github repo and heroku deployment, and screenshots of the app in action.  
+**Application Preview:**
 
-Github: [link here](https://github.com/BenjiCCB/challenge-14)
-
-Heroku: [link here](https://ccb14-blogapp.herokuapp.com/)
-
-![screenshot](./public/screenshots/appshot1.png)
-
-![screenshot](./public/screenshots/appshot2.png)
-
+![Share-A-Byte](./public/images/Share-A-Byte.gif "Share-A-Byte")
 
 ---
 
-## Table of Contents 
+## **TABLE OF CONTENT**
 
 * [Descripton](#description)
 
@@ -31,77 +23,148 @@ Heroku: [link here](https://ccb14-blogapp.herokuapp.com/)
 
 * [Contribution Guidelines](#contribution-guidelines)
 
-* [Testing Instructions](#testing-instructions)
-
 * [Questions](#questions)
 
+* [API Attributions](#api-attributions)
 
+---
+
+## Description
+
+> *Share-A-Byte* is a recipe blog application where users can create an account, create their own recipes, create a random recipe, and view and favorite other users recipes.
+> 
+> User account and datas are stored so that a user can access, update, and add to existing profile.
+>
+> The interface is fun and interactive so that users can enjoy the process of viewing and creating recipes.
+>
+> Users can search for existing recipes on the platform and favorite/unfavorite the recipe for ease of reaccess/viewing.
+>
+> Users can upload images to attach to their recipes or select from a range of default images.
+>
+> Users can modify and/or delete their recipes.
 
 ---
 
 ## Installation Instructions 
 
-\*\***_To view on Heroku, no installation is required!_**\*\*
-
-To view locally, run NPM install to add in all necessary node packages. Next, add in your database information to the .env file.  You can then create the database by loading into mysql ('mysql -u root -p', password) and running 'source db/schema.'  After quitting, run 'node seeds/seed.js' to seed the database.  Finally, run 'node server.js' in the terminal and the application will run via localhost
+> No installation required. Access/view on Heroku at - [Share-A-Byte](https://share-a-byte.herokuapp.com/).
 
 ---
 
 ## Usage Information 
 
-The app provides a full-stack application designed to let users signup and login, and view, create, and manage content. Functionality includes:
-
-* 
-   * Use Node.js and Express.js to create a RESTful API.
-
-   * Use Handlebars.js as the templating engine.
-
-   * Use MySQL and the Sequelize ORM for the database.
-
-   * Have both GET and POST routes for retrieving and adding new data.
-
-   * Be deployed using Heroku (with data).
-
-   * Use at least one new library, package, or technology that we haven’t discussed.
-
-   * Have a polished UI.
-
-   * Be responsive.
-
-   * Be interactive (i.e., accept and respond to user input).
-
-   * Have a folder structure that meets the MVC paradigm.
-
-   * Include authentication (express-session and cookies).
-
-   * Protect API keys and sensitive information with environment variables.
-
-   * Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, etc.).
-
-   * Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
-
-* _\*Bonus features\*: "empty my fridge" custom recipes.
+> To start, head to the URL provided above. 
+>
+> Next, head to "Enter Kitchen" -> "Open New Kitchen" to create account.
+>
+> Start viewing, liking, and creating some recipes!
 
 ---
 
 ## App License 
 
-This app is covered under the following license: None
+> This app is covered under the following license: ISC
 
 ---
 
 ## Contribution Guidelines 
 
-This app was developed as a grooup project, though all suggestions are welcome
-
----
-
-## Testing Instructions 
-
-Feel free to try finding bugs, although hopefully there shouldn't be any!
+> Application not accepting direct contribution.
+> However, any feedback is welcomed to be sent to the contacts below.
 
 ---
 
 ## Questions 
 
-For more information and questions, please contact me at <bensdecker@gmail.com> or by visiting my [github account](https://github.com/benjiCCB)
+> For more information and questions, please contact me any of the personnels below:
+> * <Vanessacar830@gmail.com> [(GitHub)](https://github.com/vanessacardenas1)
+> * <fannychen623@gmail.com> [(GitHub)](https://github.com/fannychen623)
+> * <BenSDecker@gmail.com> [(GitHub)](https://github.com/benjiCCB)
+> * <ABLOBOSPORTFOLIO@gmail.com> [(GitHub)](https://github.com/ablobos)
+> * <price.gavin@gmail.com> [(GitHub)](https://github.com/RealGavinPrice)
+
+## API Attributions
+> [OPEN AI](https://platform.openai.com/examples/default-recipe-generator)
+
+---
+
+## **CREATOR NOTES**
+
+### **Our Task**
+* Create the application from scratch. 
+
+* Use Handlebars.js as the template engine.
+   > CSS Framework Used: [Bulma](https://bulma.io/documentation/)
+   > Have polished and responsive UI.
+
+* Get API keys and connect to a server-side APIs .
+   > API Used: [OPEN AI](https://platform.openai.com/examples/default-recipe-generator)
+
+* Use Node.js and Express.js to create a RESTful API.
+
+* Include authentication (express-session and cookies).
+   > Used bycrypt to protect user data.
+
+* Use MySQL and the Sequelize ORM for the database.
+   > Connect to server and use API routes to Perform CRUD Operations.
+
+* Use dotenv to protect API keys and sensitive information with environment variables.
+
+* Use Javascript FileReader to read and convert image files to HTML compatible base64 urls.
+
+* Organize folder structure to meet MVC paradigm. 
+
+
+## User Story
+```
+AS a food enthusiast
+I WANT to have a place to upload/modify my own recipes with an image, ingredients, and instructions 
+I WANT to favorite and view recipes by other users
+I WANT to be able to create and save my account for repeat access
+```
+## Acceptance Criteria
+```
+GIVEN a functional deployed web application
+WHEN I signup or login with a username, email, and password
+THEN I am shown a page of my recipes, where I can add, modify, or delete recipes
+WHEN I view recipes posted by other users
+THEN I can add them to my favorites page
+```
+
+## Package Information
+* Engines:
+   * [node](https://nodejs.org/en/), version 16.19.0
+* Dependencies: 
+   * [bcrypt](https://www.npmjs.com/package/dotenv), version ^5.0.0
+   * [connection-session-sequelize](https://www.npmjs.com/package/dotenv), version ^7.0.4
+   * [dotenv](https://www.npmjs.com/package/dotenv), version ^8.2.0
+   * [express](https://www.npmjs.com/package/express), version ^4.17.1
+   * [express-handlebars](https://www.npmjs.com/package/dotenv), version ^5.2.0
+   * [express-session](https://www.npmjs.com/package/express), version ^1.17.1
+   * [mysql2](https://www.npmjs.com/package/mysql), version ^2.2.5
+   * [sequelize](https://www.npmjs.com/package/sequelize), version ^6.3.5
+   * [openai](https://platform.openai.com/examples/default-recipe-generator), version ^3.1.0
+
+--- 
+
+## **APPLICATION PAGES PREVIEW**
+### Homepage
+>![Homepage](./public/images/homepage.png "homepage")
+### Login Page
+>![Login Page](./public/images/login%20page.png "login page")
+### Sign Up Form
+>![Sign-Up](./public/images/signup%20modal.png "signup modal")
+### Recipes Catalog
+>![Catalog](./public/images/catalog%20page.png "catalog")
+### Search Page
+>![Search Page](./public/images/search%20page.png "seach page")
+### Recipe Page
+>![Recipe](./public/images/recipe%20page.png "recipe")
+### My Kitchen Page
+>![My Kitchen](./public/images/my%20kitchen%20page.png "my kitchen page")
+### My Favorites Page
+>![My Favorite](./public/images/my%20favorites%20page.png "my favorite page")
+### Create New Recipe
+>![Create New Recipe](./public/images/new%20recipe%20modal.png "create new recipe modal")
+### Create Random Recipe
+>![Create Random Recipe](./public/images/random%20recipe%20modal.png "create random recipe modal")

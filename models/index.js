@@ -34,5 +34,3 @@ Favorite.belongsTo(Recipe, {
 });
 
 module.exports = { User, Recipe, Favorite };
-
-
