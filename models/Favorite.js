@@ -11,6 +11,7 @@ Favorite.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    // references user
     user_id: {
       type: DataTypes.INTEGER,
       references: {
@@ -18,6 +19,7 @@ Favorite.init(
         key: 'id',
       },
     },
+    // references recipe
     recipe_id: {
         type: DataTypes.INTEGER,
         references: {

@@ -14,8 +14,9 @@
   <header class="p-5">
     <nav class="navbar has-text-weight-bold is-size-5" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
+        {{!-- logo, redirects to homepage --}}
         <a class="navbar-item" href="/"><img src="/images/logo.png"></a>
-      
+        {{!-- navbar dropdown on mobile screen --}}
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="potluckAndKitchen">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -31,6 +32,7 @@
               <a class="navbar-item" href="/search">Search</a>
             </div>
           </div>
+          {{!-- display kitchen dropdown if logged in, otherwise display login link --}}
           {{#if logged_in}}
           <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link has-text-white arrow-head">My Kitchen</a>

@@ -2,10 +2,11 @@ const router = require('express').Router();
 const { Favorite } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// create post
+// create new favorite item, require login authentication
 router.post('/', withAuth, async (req, res) => {
 
   try {
+    // pass in request body to create
     const newFavorite = await Favorite.create({
       ...req.body,
       user_id: req.session.user_id,
@@ -17,9 +18,10 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
-
+// delete a favorite based on id, require login authentication
 router.delete('/:id', withAuth, async (req, res) => {
   try {
+    // check for the favorite item's user id matches the session user id
     const favoriteData = await Favorite.destroy({
       where: {
         recipe_id: req.params.id,

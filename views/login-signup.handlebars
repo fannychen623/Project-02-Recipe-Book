@@ -7,6 +7,7 @@
             </div>
             <div class="card-content">
                 <div class="content">
+                    {{!-- login form --}}
                     <form class="form login-form">
                         <div class="field">
                             <label class="label">Email</label>
@@ -23,6 +24,7 @@
                             </div>
                         </div>
                         <div class="field mt-5 login-buttons">
+                            {{!-- button to launch signup modal --}}
                             <button class="js-modal-trigger button has-text-weight-bold pl-1" data-target="modal-signup">Open New Kitchen</button>
                             <button type="submit" class="button has-text-weight-bold has-text-white" id="login">Get Cookin'</button>
                         </div>
@@ -32,6 +34,7 @@
         </div>
     </div>
 </div>
+{{!-- signup modal, hidden unless set active --}}
 <div id="modal-signup" class="modal">
     <div class="modal-background"></div>
     <div class="modal-card">
@@ -40,6 +43,7 @@
             <button class="delete" aria-label="close"></button>
         </div>
         <section class="modal-card-body">
+            {{!-- signup form --}}
             <form class="form signup-form">
                 <div class="field pt-5 px-5">
                     <label class="label">Email</label>

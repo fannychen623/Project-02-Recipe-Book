@@ -1,10 +1,12 @@
-// favorite recipe
+// favorite recipe handler
 const favoriteRecipeHandler = async (event) => {
   event.preventDefault();
 
+  // define data id from elemet
   if (event.target.hasAttribute('data-id')) {
     const recipe_id = event.target.getAttribute('data-id');
 
+    // call POST request
     const response = await fetch(`/api/favorites`, {
       method: 'POST',
       body: JSON.stringify({recipe_id}),
@@ -13,6 +15,7 @@ const favoriteRecipeHandler = async (event) => {
       }
     })
 
+    // on success, reload the page
     if (response.ok) {
       document.location.reload();
     } else {
@@ -21,6 +24,7 @@ const favoriteRecipeHandler = async (event) => {
   }
 };
   
+// eventlistener
 document
   .querySelector('#blank-star')
   .addEventListener('click', favoriteRecipeHandler);

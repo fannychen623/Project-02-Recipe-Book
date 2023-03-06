@@ -2,9 +2,12 @@
     <div class="card-content">
         <div class="media m-2">
             <div class="media-left">
-                <figure class="image">            
-                    {{#if recipe_image}} <img src="{{recipe_image}}" alt="Recipe image" style="object-fit: cover; height: 300px; width: 300px;">
-                    {{else}}<img src="/images/default_image.png" alt="Recipe image" id="default-image" style="object-fit: cover; height: 300px; width: 300px;">
+                <figure class="image">
+                    {{!-- display image if available, otherwise display default image --}}
+                    {{#if recipe_image}}
+                        <img src="{{recipe_image}}" alt="Recipe image" style="object-fit: cover; height: 300px; width: 300px;">
+                    {{else}}
+                        <img src="/images/default_image.png" alt="Recipe image" id="default-image" style="object-fit: cover; height: 300px; width: 300px;">
                     {{/if}}
                 </figure>
                 <div id="file-input" class="file has-name my-5">
@@ -25,10 +28,11 @@
                 </div>
             </div>
             <div class="media-content ml-6">
+                {{!-- pass api response into content --}}
                 <div class="field pt-5 pb-5">
                     <label class="label is-size-4">Recipe Name</label>
                     <div class="control has-icons-left has-icons-right">
-                        <input class="input" type="text" id="recipe-name" value={{recipe_name}}>
+                        <input class="input" type="text" id="recipe-name" value="{{recipe_name}}">
                         <span class="icon is-small is-left"><i class="fas fa-cutlery"></i></span>
                     </div>
                 </div>
@@ -39,6 +43,7 @@
         </div>
         <div class="content pt-5 m-2">
             <div class="columns">
+                {{!-- pass api response into content --}}
                 <div class="column is-4">
                     <p class="title is-4" style="white-space: pre-line">Ingredients:<br></p>
                     <div class="field">

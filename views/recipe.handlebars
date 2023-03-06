@@ -3,19 +3,28 @@
         {{#if isAuthor}}<a href="/api/recipes/modify/{{id}}"><button type="submit" class="button subtitle has-text-weight-bold is-ghost mt-5 modify-recipe" id="modify-recipe2">Modify</button></a>{{/if}}
         <div class="media m-2">
             <div class="media-left">
-                <figure class="image">            
-                    {{#if recipe_image}} <img src="{{recipe_image}}" alt="Recipe image" style="object-fit: cover; height: 300px; width: 300px;">
-                    {{else}}<img src="/images/default_image.png" alt="Recipe image" style="object-fit: cover; height: 300px; width: 300px;">
+                <figure class="image">
+                    {{!-- display image if applicable, otherwise display default image --}}
+                    {{#if recipe_image}}
+                        <img src="{{recipe_image}}" alt="Recipe image" style="object-fit: cover; height: 300px; width: 300px;">
+                    {{else}}
+                        <img src="/images/default_image.png" alt="Recipe image" style="object-fit: cover; height: 300px; width: 300px;">
                     {{/if}}
                 </figure>
             </div>
             <div class="media-content">
+                {{!-- star item at the corner to favorite and unfavorite recipes --}}
                 {{#if logged_in}}
-                    {{#if favorited}} <div class="box" id="favorite-star" data-id="{{id}}" style="background-image: url('/images/filledstar.png')"></div>  
-                    {{else}} <div class="box" id="blank-star" data-id="{{id}}" style="background-image: url('/images/unfilledstar.png')"></div>  
+                    {{#if favorited}}
+                        <div class="box" id="favorite-star" data-id="{{id}}" style="background-image: url('/images/filledstar.png')"></div>  
+                    {{else}}
+                        <div class="box" id="blank-star" data-id="{{id}}" style="background-image: url('/images/unfilledstar.png')"></div>  
                     {{/if}}
-                {{else}} <a href="/login"><div class="recipe-login-cta">Log in to Favorite!</div></a>
+                {{else}}
+                    {{!-- if user is not logged in, prompt log in to favorite recipe --}}
+                    <a href="/login"><div class="recipe-login-cta">Log in to Favorite!</div></a>
                 {{/if}}
+                {{!-- output api response --}}
                 <p class="title is-2 ml-6 pt-6">{{recipe_name}}</p></br>
                 <p class="title is-4 ml-6 pb-5">Recipe By: {{user.username}}</p>
                 <p class="title is-4 ml-6 pb-6">Liked by: {{favorites.length}} <img src="/images/follower.png" width="20"></p>
@@ -25,10 +34,12 @@
             <div class="columns">
                 <div class="column is-4">
                     <p class="title is-4" style="white-space: pre-line">Ingredients:<br></p>
+                    {{!-- display content in rows by new lines --}}
                     <p class="has-text-weight-semibold" style="white-space: pre-line">{{ingredients}}</p>
                 </div>
                 <div class="column">
                     <p class="title is-4" style="white-space: pre-line">Instructions:<br></p>
+                    {{!-- display content in rows by new lines --}}
                     <p class="has-text-weight-semibold" style="white-space: pre-line">{{instructions}}</p>
                 </div>
             </div>

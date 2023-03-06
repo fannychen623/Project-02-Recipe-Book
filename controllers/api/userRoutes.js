@@ -1,10 +1,13 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+// create new account
 router.post('/signup', async (req, res) => {
   try {
+    // pass in request body to create
     const userData = await User.create(req.body);
 
+    // save new user session
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
@@ -15,8 +18,10 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+// user log in
 router.post('/login', async (req, res) => {
   try {
+    // check that the unique email exist
     const userData = await User.findOne({ where: { email: req.body.email } });
 
     if (!userData) {
@@ -26,6 +31,7 @@ router.post('/login', async (req, res) => {
       return;
     }
 
+    // check the password with hash in model
     const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
@@ -35,6 +41,7 @@ router.post('/login', async (req, res) => {
       return;
     }
 
+    // save user session
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
@@ -46,7 +53,9 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// user logout
 router.get('/logout', (req, res) => {
+  // destroy the session
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -55,6 +64,7 @@ router.get('/logout', (req, res) => {
     res.status(404).end();
   }
 
+  // redirect to the hompage after log out
   res.redirect('homepage');
 });
 

@@ -1,3 +1,4 @@
+/* define main colors */
 :root {
   --brown1: #E5D3B3;
   --brown2: #D2B48C;
@@ -7,6 +8,7 @@
   --trans:  #98755400;
 }
 
+/* viewport size/background and default custom cursor */
 html, body {
   width: 100%;
   height: 100%;
@@ -21,8 +23,9 @@ header, footer{
   background-size:  100% 200%;
 }
 
-.navbar {
+.navbar, a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   background-color: var(--trans);
+  border: none;
 }
 
 .navbar-burger {
@@ -33,24 +36,20 @@ header, footer{
   border-color: var(--brown5);
 }
 
-.navbar-dropdown, .card-content {
+.navbar-dropdown, .card-content, #my-kitchen .card, #my-favorites .card, #search-page .card {
   background-color: var(--brown2);
 }
 
-.navbar-dropdown .navbar-item, .navbar-dropdown button {
+.navbar-dropdown .navbar-item, .navbar-dropdown button, .pagination-ellipsis, .modal .label, .field button, 
+#my-kitchen .title, #my-kitchen .subtitle, #my-favorites .title, #my-favorites .subtitle, #recipe-icons {
   color: var(--brown5);
 }
 
-.navbar-divider {
+.navbar-divider, .navbar-menu.is-active {
   background-color: var(--brown5);
 }
 
 .navbar-dropdown {
-  border: none;
-}
-
-a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
-  background-color: var(--trans);
   border: none;
 }
 
@@ -59,10 +58,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   color: var(--brown5);
 }
 
-.navbar-menu.is-active {
-  background-color: var(--brown5);
-}
-
+/* homepage background and size */
 #homepage {
   width: 100%;
   height: 100%;
@@ -72,6 +68,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   padding-bottom: 70%;
 }
 
+/* open book button to catalog page from homepage */
 #open-book {
   color: var(--brown5);
   cursor: url("../images/nextpage.png") 35 10, auto;
@@ -82,6 +79,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   right: -7%;
 }
 
+/* catalog page size and background */
 #recipe-catalog {
   width: 100%;
   height: 100%;
@@ -98,11 +96,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   position: relative;
 }
 
-#pagespacer{
-  position: relative;
-  height: 1000%;
-}
-
+/* page navigation buttons and display */
 .pagination {
   position: absolute;
   bottom: 5%;
@@ -133,10 +127,6 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   pointer-events: none;
 }
 
-.pagination-ellipsis {
-  color: var(--brown5)
-}
-
 .pagination-link.is-current {
   background-color: var(--brown3);
   border-color: var(--brown5);
@@ -156,6 +146,7 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   justify-content: space-between;
 }
 
+/* custom button cursors */
 #login, #signup, #new-recipe, #random-recipe, #update-recipe {
   cursor: url("../images/bowl.png") 40 40, auto;
   border: none;
@@ -180,18 +171,11 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
   border: none;
 }
 
-.modal .label, .field button, #my-kitchen .title, #my-kitchen .subtitle, #my-favorites .title, #my-favorites .subtitle, #recipe-icons {
-  color: var(--brown5);
-}
-
 #my-kitchen, #my-favorites {
   padding-bottom: 10%;
 }
 
-#my-kitchen .card, #my-favorites .card, #search-page .card {
-  background-color: var(--brown2);
-}
-
+/* custom delete cursor */
 #delete-recipe, #delete-favorite {
   color: var(--brown5);
   cursor: url("../images/trashcan.png") 35 10, auto;
@@ -229,12 +213,6 @@ a.navbar-item:hover, .navbar-item.has-dropdown:hover .navbar-link, #logout {
 
 .box:hover {
   cursor: pointer;
-}
-
-#catalog-image {
-  object-fit: cover;
-  width: 300px;
-  height: 300px;
 }
 
 .random-recipe-button {

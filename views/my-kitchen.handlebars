@@ -2,11 +2,14 @@
     <div class="field mt-5 my-kitchen-header">
         <p class="title is-2 my-6">{{username}}'s Recipes</p>
         <div class="field mt-6 is-pulled-right">
+            {{!-- button to launche random recipe modal --}}
             <button class="js-modal-trigger button has-text-weight-bold my-auto is-size-5 has-text-white mr-2" data-target="modal-random-recipe" id="random-recipe-toggle">Risky Recipe</button>
+            {{!-- button to launch new recipe modal --}}
             <button class="js-modal-trigger button has-text-weight-bold my-auto is-size-5 has-text-white" data-target="modal-new-recipe" id="new-recipe-toggle">New Recipe</button>
         </div>
     </div>
     <div class="columns is-multiline">
+        {{!-- display each user recipe as card --}}
         {{#if recipes.length}}
             {{#each recipes as |recipe|}}
             <div class="column is-half">
@@ -15,7 +18,9 @@
                         <div class="column is-5">
                             <div class="card-image">
                                 <figure class="image">
+                                    {{!-- link to specific recipe page --}}
                                     <a href="/api/recipes/{{recipe.id}}">
+                                    {{!-- display image if applicable, otherwise display default image --}}
                                     {{#if recipe_image}}
                                         <img src="{{recipe_image}}" alt="Placeholder image" style="object-fit: cover; height: 200px; width: 200px;">
                                     {{else}}
@@ -26,9 +31,12 @@
                             </div>
                         </div>
                         <div class="column">
+                            {{!-- link to specific recipe page --}}
                             <a class="title is-3 is-spaced" href="/api/recipes/{{recipe.id}}">{{recipe.recipe_name}}</a>
                             <p class="subtitle is-5 mt-3">Liked By: {{recipe.favorites_count}} <img src="/images/follower.png" width="20"></p>
+                            {{!-- link to modify recipe page --}}
                             <a href="/api/recipes/modify/{{recipe.id}}"><button type="submit" class="button has-text-weight-bold is-ghost mb-1 modify-recipe" id="modify-recipe">Modify</button></a>
+                            {{!-- button function to delete recipe --}}
                             <button type="submit" class="button has-text-weight-bold is-ghost mb-1 delete-recipe" data-id="{{recipe.id}}" id="delete-recipe">Remove</button>
                         </div>
                     </div>
@@ -39,6 +47,7 @@
     </div>
 </div>
 
+{{!-- new recipe modal, hidden unless set active --}}
 <div id="modal-new-recipe" class="modal">
     <div class="modal-background"></div>
     <div class="modal-card">
@@ -47,6 +56,7 @@
             <button class="delete" aria-label="close"></button>
         </div>
         <section class="modal-card-body">
+            {{!-- new recipe form --}}
             <form class="form new-recipe-form">
                 <div class="field pt-5 px-5">
                     <label class="label">Recipe Name</label>
@@ -84,6 +94,7 @@
                     </label>
                     <button class="button has-text-weight-bold ml-6" id="recipe-icons">Default Images</button>
                 </div>
+                {{!-- default icon images, section hidden on default --}}
                 <div class="p-5" id="default-icons">
                     <p class="label pb-3">Don't have a picture of your recipe? Select a default image!</p>
                     <img class="icon-image" src="./images/icon1.png" alt="Icon 1">
@@ -108,6 +119,7 @@
     </div>
 </div>
 
+{{!-- random recipe modal, hidden unless set active --}}
 <div id="modal-random-recipe" class="modal">
     <div class="modal-background"></div>
     <div class="modal-card">
@@ -119,6 +131,7 @@
             <p class="has-text-white has-text-weight-semibold">Have some left over ingredients in your fridge and not sure what to make? <br> Leave it to AI! Let's clear your fridge!</p>
         </div>
         <section class="modal-card-body">
+            {{!-- randome recipe form --}}
             <form class="form random-recipe-form">
                 <div class="field p-5">
                     <label class="label">List the ingredients you want to include:</label>
@@ -128,10 +141,13 @@
                 </div>
                 <div class="field pt-5 random-recipe-button">
                     <button type="submit" class="button has-text-weight-bold" id="random-recipe">Give me a Recipe!</button>
+                    {{!-- fetch response loading GIF --}}
                     <br><img class="mt-5" id="loadingGIF" src="/images/coffee.gif" width="60" style="display: none; margin: auto">
+                    {{!-- fetch response loaded notification --}}
                     <br><p class="pb-5 is-size-4 has-text-white has-text-weight-bold" id="AiMessage" style="display: none; margin: auto">The AI Chef has Spoken! <i class="fa fa-coffee" aria-hidden="true"></i></p>
                 </div>
             </form>
+            {{!-- api response input area --}}
             <form class="form ai-recipe-form pt-3">
                 <div class="field px-5 pt-3">
                     <label class="label">Recipe Ingredients:</label>

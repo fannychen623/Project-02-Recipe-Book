@@ -1,7 +1,10 @@
 <div id="recipe-catalog">
     <div class="tile is-ancestor" id="recipe-posts">
+        {{!-- display each recipe as it's own tile --}}
         {{#if recipes.length}}
             {{#each recipes as |recipe|}}
+            {{!-- set display to none on default --}}
+            {{!-- use the index value as id to avoid skipping numbers due to deleted recipes --}}
             <div class="tile is-parent is-4 recipe-page" id="{{@index}}" style="display: none; ">
                 <article class="tile is-child is-info">
                 <a class="title" href="/api/recipes/{{recipe.id}}">{{recipe.recipe_name}}</a>
@@ -21,6 +24,7 @@
             {{/each}}
         {{/if}}
     </div>
+    {{!-- page navigation --}}
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
         <ul class="pagination-list">
             <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
