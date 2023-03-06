@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+  document.addEventListener('keypress', function(event){
+      if (event.which == '13') {
+        event.preventDefault();
+      }
+  });
+
   // Functions to open and close a modal
   function openModal($el) {
     $el.classList.add('is-active');
@@ -15,12 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Add a click event on buttons to open a specific modal
-  document.querySelector('.js-modal-trigger').addEventListener('click', () => {
-    openModal(document.getElementById(modal));
+  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+
+    $trigger.addEventListener('click', () => {
+      openModal($target);
+    });
   });
 
   // Add a click event on various child elements to close the parent modal
-  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .close-modal') || []).forEach(($close) => {
+  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .close-modal') || []).forEach(($close) => {
     const $target = $close.closest('.modal');
 
     $close.addEventListener('click', () => {
@@ -36,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
       closeAllModals();
     }
   });
-  
 });
 
 const loginFormHandler = async (event) => {
@@ -53,6 +64,10 @@ const loginFormHandler = async (event) => {
       headers: { 'Content-Type': 'application/json' },
     });
     
+    const loggedIn = await response.json().then(data => (
+      document.location.replace('/my-kitchen')
+    ));
+
     if (response.ok) {
       document.location.replace('/my-kitchen');
     } else {
@@ -84,15 +99,9 @@ const signupFormHandler = async (event) => {
 };
 
 document
-  .querySelector('#login')
-  .addEventListener('click', loginFormHandler);
+  .querySelector('.login-form')
+  .addEventListener('submit', loginFormHandler);
 
 document
   .querySelector('#signup')
   .addEventListener('click', signupFormHandler);
-
-  document.getElementById('password-login').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-      loginFormHandler(e);
-    }
-});

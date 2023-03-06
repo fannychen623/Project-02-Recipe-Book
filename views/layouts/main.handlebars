@@ -38,7 +38,7 @@
               <a class="navbar-item" href="/my-kitchen">My Recipes</a>
               <a class="navbar-item" href="/my-favorites">My Favorites</a>
               <hr class="navbar-divider m-3">
-              <a class="navbar-item" href="/"><button class="no-button has-text-weight-bold p-0" id="logout">Close Kitchen</button></a>
+              <a class="navbar-item" href="/api/users/logout">Close Kitchen</a>
             </div>
           </div>
           {{else}}
@@ -61,10 +61,6 @@
   </footer>
 
   <script src="/js/main.js"></script>
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
 </body>
 
 </html>
