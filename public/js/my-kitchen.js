@@ -119,7 +119,7 @@ const randomRecipeHandler = async (event) => {
       'Content-Type': 'application/json',
     },
   }); 
-  
+
   const aiResponse = await response.json().then(data => (
     document.querySelector('#loadingGIF').style.display= "none",
     document.querySelector('#random-recipe-name').value = data.title,
@@ -189,7 +189,6 @@ const newRecipeHandler = async (event) => {
 
 // handle delete
 const delButtonHandler = async (event) => {
-
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
