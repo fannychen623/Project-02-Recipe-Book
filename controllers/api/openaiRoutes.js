@@ -46,6 +46,7 @@ router.post("/", async (req, res) => {
     let instructions = completion.substring(
       completion.indexOf("Instructions:") + 13);
     instructions = instructions.trim();
+    instructions = instructions.replace(/\n\n/g, "\n")
 
     // send request results back to function to pass into page
     return res.send({

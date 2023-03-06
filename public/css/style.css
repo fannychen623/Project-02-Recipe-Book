@@ -141,22 +141,31 @@ header, footer{
   border: none;
 }
 
-.login-buttons, .my-kitchen-header, #file-input {
+.my-kitchen-header, #file-input {
   display: flex;
   justify-content: space-between;
+}
+
+.login-buttons {
+  display: flex;
+  justify-content: end;
+}
+
+#signup-modal-toggle {
+  color: var(--brown5);
+  position: relative;
+  top: -40px;
+  cursor: alias;
+}
+
+#login-page .content {
+  height: 225px;
 }
 
 /* custom button cursors */
 #login, #signup, #new-recipe, #random-recipe, #update-recipe {
   cursor: url("../images/bowl.png") 40 40, auto;
   border: none;
-}
-
-.login-buttons .js-modal-trigger {
-  color: var(--brown5);
-  background-color: var(--trans);
-  border: none;
-  cursor: alias;
 }
 
 .modal-card-body {
