@@ -11,11 +11,13 @@ Recipe.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    // limit name characters to 30
     recipe_name: {
       type: DataTypes.CHAR(30),
       allowNull: false,
 
     },
+    // image is not required, base64 image 
     recipe_image: {
       type: DataTypes.TEXT('long'),
     },
@@ -27,6 +29,7 @@ Recipe.init(
       type: DataTypes.TEXT('medium'),
       allowNull: false,
     },
+    // references user
     user_id: {
       type: DataTypes.INTEGER,
       references: {

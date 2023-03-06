@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class User extends Model {
+  // check password by hash and compare
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
@@ -20,6 +21,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    // email is validated and unique
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -28,6 +30,7 @@ User.init(
         isEmail: true,
       },
     },
+    // password should be have length of at least 8
     password: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -38,10 +41,12 @@ User.init(
   },
   {
     hooks: {
+      // hash password before posting into database
       beforeCreate: async (newUserData) => {
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
+      // hash password before fetching from database
       beforeUpdate: async (updatedUserData) => {
         updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
         return updatedUserData;

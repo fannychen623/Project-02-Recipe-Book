@@ -1,7 +1,9 @@
+// import models
 const User = require('./User');
 const Recipe = require('./Recipe');
 const Favorite = require('./Favorite');
 
+// define model associations
 User.hasMany(Recipe, {
   foreignKey: 'user_id',
   onDelete: 'CASCADE'

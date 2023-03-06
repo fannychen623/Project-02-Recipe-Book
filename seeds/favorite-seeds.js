@@ -1,3 +1,4 @@
+// seed data for favorite model
 const { Favorite } = require('../models');
 
 const favoriteData = [

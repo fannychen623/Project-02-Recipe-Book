@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+  // prevent page reload on enter keypress
   document.addEventListener('keypress', function(event){
       if (event.which == '13') {
         event.preventDefault();
       }
   });
 
-  // Functions to open and close a modal
+  // functions to open and close a modal
   function openModal($el) {
     $el.classList.add('is-active');
   }
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Add a click event on buttons to open a specific modal
+  // add a click event on buttons to open a specific modal
   (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
     const modal = $trigger.dataset.target;
     const $target = document.getElementById(modal);
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Add a click event on various child elements to close the parent modal
+  // add a click event on various child elements to close the parent modal
   (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .close-modal') || []).forEach(($close) => {
     const $target = $close.closest('.modal');
 
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Add a keyboard event to close all modals
+  // add a keyboard event to close all modals
   document.addEventListener('keydown', (event) => {
     const e = event || window.event;
 
@@ -50,24 +50,29 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// login handler
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
-  // Collect values from the login form
+  // define values from elements
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
+  // ensure that all required fields are provided
   if (email && password) {
+    // all POST request
     const response = await fetch('/api/users/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
     
+    // wait for response to complete and then reload page
     const loggedIn = await response.json().then(data => (
       document.location.replace('/my-kitchen')
     ));
 
+    // on success, direct to my-kitchen page
     if (response.ok) {
       document.location.replace('/my-kitchen');
     } else {
@@ -76,20 +81,25 @@ const loginFormHandler = async (event) => {
   }
 };
 
+// signup handler
 const signupFormHandler = async (event) => {
   event.preventDefault();
 
+  // define values from element
   const email = document.querySelector('#email-signup').value.trim();
   const username = document.querySelector('#username-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
 
+  // ensure that all required fields are provided
   if (email && username && password) {
+    // call POST request
     const response = await fetch('/api/users/signup', {
       method: 'POST',
       body: JSON.stringify({ email, username, password }),
       headers: { 'Content-Type': 'application/json' },
     });
 
+    // on success, direct to my-kitchen page
     if (response.ok) {
       document.location.replace('/my-kitchen');
     } else {
@@ -98,6 +108,7 @@ const signupFormHandler = async (event) => {
   }
 };
 
+// eventlisteners
 document
   .querySelector('.login-form')
   .addEventListener('submit', loginFormHandler);

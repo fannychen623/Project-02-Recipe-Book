@@ -1,18 +1,22 @@
 <div id="search-page">
     <div class="field m-6 has-text-centered">
+        {{!-- search bar --}}
         <p class="control search-bar">
             <input class="input mr-2" type="text" placeholder="Search recipes" id="search-input">
             <button class="button search-button">Search</button></a>
         </p>
     </div>
     <div class="columns is-multiline mb-5">
+        {{!-- display each recipe as card --}}
         {{#if recipes.length}}
             {{#each recipes as |recipe|}}
             <div class="column is-one-quarter" style="display: block; " id="{{recipe.id}}">
                 <div class="card p-4 has-text-centered">
                     <div class="card-image mb-2">
                         <figure class="image">
+                            {{!-- link to specific recipe page --}}
                             <a href="/api/recipes/{{recipe.id}}">
+                            {{!-- display image if applicable, otherwise dsiplay default image --}}
                             {{#if recipe_image}}
                                 <img src="{{recipe_image}}" alt="Placeholder image" style="object-fit: cover; height: 250px; width: 250px;">
                             {{else}}
@@ -21,6 +25,7 @@
                             </a>
                         </figure>
                     </div>
+                    {{!-- link to specific recipe page --}}
                     <a class="title is-4 is-spaced" href="/api/recipes/{{recipe.id}}">{{recipe.recipe_name}}</a>
                     <p class="subtitle is-6 mt-3">Liked By: {{recipe.favorites_count}} <img src="/images/follower.png" width="20"></p>
                 </div>
