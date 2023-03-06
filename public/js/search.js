@@ -10,7 +10,7 @@ const searchRecipeHandler = async (event) => {
   });
   const searchResponse = await response.json().then(data => (
     document.querySelectorAll('.column').forEach(function(el) {
-      if (JSON.stringify(data.recipeIds).indexOf(el.id) >= 0) {
+      if (data.recipeIds.includes(Number(el.id))) {
         el.style.display = "block";
       } else {
         el.style.display = "none";

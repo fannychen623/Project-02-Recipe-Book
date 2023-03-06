@@ -104,20 +104,13 @@ router.get('/modify/:id', withAuth, async (req, res) => {
 // search function
 router.post('/search', async (req, res) => {
   try {
-    const recipeData = await Recipe.findAll({
-      // where: { 
-      //   recipe_name: {
-      //     [Op.like]: '%Beef%'
-      //   }
-      // },
-      include: [User, Favorite]
-    });
+    const recipeData = await Recipe.findAll();
 
     // Serialize data so the template can read it
     const allRecipes = recipeData.map((recipe) => recipe.get({ plain: true }));
     const recipes = allRecipes.reduce(function(filtered, recipe) {
       if (recipe.recipe_name.toLowerCase().indexOf(req.body.searchInput.toLowerCase()) >= 0) {
-         filtered.push(recipe);
+        filtered.push({recipe_name: recipe.recipe_name, id: recipe.id});
       }
       return filtered;
     }, []);

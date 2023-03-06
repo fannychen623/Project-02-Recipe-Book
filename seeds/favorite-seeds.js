@@ -180,10 +180,6 @@ const favoriteData = [
   {
     user_id: 4,
     recipe_id: 25,
-  },
-  {
-    user_id: 4,
-    recipe_id: 26,
   }
 ];
 
