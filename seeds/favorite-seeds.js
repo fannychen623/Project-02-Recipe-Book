@@ -113,75 +113,75 @@ const favoriteData = [
   {
     user_id: 4,
     recipe_id: 15,
-  },
-  {
-    user_id: 1,
-    recipe_id: 16,
-  },
-  {
-    user_id: 2,
-    recipe_id: 16,
-  },
-  {
-    user_id: 2,
-    recipe_id: 17,
-  },
-  {
-    user_id: 3,
-    recipe_id: 17,
-  },
-  {
-    user_id: 1,
-    recipe_id: 18,
-  },
-  {
-    user_id: 3,
-    recipe_id: 18,
-  },
-  {
-    user_id: 4,
-    recipe_id: 18,
-  },
-  {
-    user_id: 4,
-    recipe_id: 19,
-  },
-  {
-    user_id: 1,
-    recipe_id: 20,
-  },
-  {
-    user_id: 3,
-    recipe_id: 21,
-  },
-  {
-    user_id: 1,
-    recipe_id: 22,
-  },
-  {
-    user_id: 4,
-    recipe_id: 22,
-  },
-  {
-    user_id: 4,
-    recipe_id: 23,
-  },
-  {
-    user_id: 1,
-    recipe_id: 24,
-  },
-  {
-    user_id: 2,
-    recipe_id: 24,
-  },
-  {
-    user_id: 3,
-    recipe_id: 25,
-  },
-  {
-    user_id: 4,
-    recipe_id: 25,
   }
+  // {
+  //   user_id: 1,
+  //   recipe_id: 16,
+  // },
+  // {
+  //   user_id: 2,
+  //   recipe_id: 16,
+  // },
+  // {
+  //   user_id: 2,
+  //   recipe_id: 17,
+  // },
+  // {
+  //   user_id: 3,
+  //   recipe_id: 17,
+  // },
+  // {
+  //   user_id: 1,
+  //   recipe_id: 18,
+  // },
+  // {
+  //   user_id: 3,
+  //   recipe_id: 18,
+  // },
+  // {
+  //   user_id: 4,
+  //   recipe_id: 18,
+  // },
+  // {
+  //   user_id: 4,
+  //   recipe_id: 19,
+  // },
+  // {
+  //   user_id: 1,
+  //   recipe_id: 20,
+  // },
+  // {
+  //   user_id: 3,
+  //   recipe_id: 21,
+  // },
+  // {
+  //   user_id: 1,
+  //   recipe_id: 22,
+  // },
+  // {
+  //   user_id: 4,
+  //   recipe_id: 22,
+  // },
+  // {
+  //   user_id: 4,
+  //   recipe_id: 23,
+  // },
+  // {
+  //   user_id: 1,
+  //   recipe_id: 24,
+  // },
+  // {
+  //   user_id: 2,
+  //   recipe_id: 24,
+  // },
+  // {
+  //   user_id: 3,
+  //   recipe_id: 25,
+  // },
+  // {
+  //   user_id: 4,
+  //   recipe_id: 25,
+  // }
 ];
 
 const seedCategories = () => Favorite.bulkCreate(favoriteData);
